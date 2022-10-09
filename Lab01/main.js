@@ -73,10 +73,24 @@ function deleteInputByButton() {
 
 addButton.addEventListener('click', function () {
   createInputByButton();
+  getResults();
+  inputArray.forEach((element) => {
+    element.children[1].addEventListener('change', function () {
+      getResults();
+      display();
+    });
+  });
 });
 
 deleteButton.addEventListener('click', function () {
   deleteInputByButton();
+  getResults();
+  inputArray.forEach((element) => {
+    element.children[1].addEventListener('change', function () {
+      getResults();
+      display();
+    });
+  });
 });
 
 // Results
@@ -104,10 +118,10 @@ function getResults() {
   let averageValue = sum / inputValuesArray.length || 0;
   let minValue = Math.min(...inputValuesArray) || 0;
   let maxValue = Math.max(...inputValuesArray) || 0;
-  sum.textContent = sumValue;
-  average.textContent = averageValue;
-  min.textContent = minValue;
-  max.textContent = maxValue;
+  sum.textContent = `Sum: ${sumValue}`;
+  average.textContent = `Average: ${averageValue}`;
+  min.textContent = `Min: ${minValue}`;
+  max.textContent = `Max: ${maxValue}`;
 
   inputValuesArray = [];
 }
