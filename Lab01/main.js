@@ -1,6 +1,8 @@
 let inputArray = [];
 
 const container = document.querySelector('.container');
+const addButton = document.createElement('button');
+const deleteButton = document.createElement('button');
 
 function createInput(elementIndex) {
   const inputContainer = document.createElement('div');
@@ -18,12 +20,10 @@ function createInput(elementIndex) {
   inputArray.push(inputContainer);
 }
 
-function addButtons(inputElement) {
-  const addButton = document.createElement('button');
+function createButtons(inputElement) {
   addButton.classList.add('addButton');
   addButton.textContent = `+`;
 
-  const deleteButton = document.createElement('button');
   deleteButton.classList.add('deleteButton');
   deleteButton.textContent = `-`;
 
@@ -35,9 +35,23 @@ for (let index = 0; index < 3; index++) {
   createInput(index + 1);
 }
 
-for (let index = 0; index < inputArray.length; index++) {
-  if (index + 1 == inputArray.length) {
-    addButtons(inputArray[index]);
+function display() {
+  console.log(inputArray);
+  for (let index = 0; index < inputArray.length; index++) {
+    if (index + 1 == inputArray.length) createButtons(inputArray[index]);
+    container.appendChild(inputArray[index]);
   }
-  container.appendChild(inputArray[index]);
 }
+
+display();
+
+addButton.addEventListener('click', function () {
+  createInput(inputArray.length + 1);
+  display();
+});
+
+deleteButton.addEventListener('click', function () {
+  const popInput = inputArray.pop();
+  container.removeChild(popInput);
+  display();
+});
