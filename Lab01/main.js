@@ -115,9 +115,12 @@ function getResults() {
   for (let index = 0; index < inputValuesArray.length; index++) {
     sumValue += parseInt(inputValuesArray[index]);
   }
+  // Jeśli input to string to nie licz sumy!
   let averageValue = sum / inputValuesArray.length || 0;
-  let minValue = Math.min(...inputValuesArray) || 0;
-  let maxValue = Math.max(...inputValuesArray) || 0;
+  let minValue = Math.min(...inputValuesArray);
+  if (minValue == Number.POSITIVE_INFINITY || !minValue) minValue = 0;
+  let maxValue = Math.max(...inputValuesArray);
+  if (maxValue == Number.NEGATIVE_INFINITY || !maxValue) maxValue = 0;
   sum.textContent = `Sum: ${sumValue}`;
   average.textContent = `Average: ${averageValue}`;
   min.textContent = `Min: ${minValue}`;
