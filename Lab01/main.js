@@ -117,7 +117,7 @@ function getResults() {
   }
   // Jeśli input to string to nie licz sumy!
   // Dodać klase podświetlającą gdzie jest źle
-  let averageValue = sum / inputValuesArray.length;
+  let averageValue = sumValue / inputValuesArray.length || 0;
 
   let minValue = Math.min(...inputValuesArray);
   if (minValue == Number.POSITIVE_INFINITY || !minValue) minValue = 0;
