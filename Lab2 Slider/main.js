@@ -10,7 +10,25 @@ function sleep(ms) {
   return new Promise((resolveFunc) => setTimeout(resolveFunc, ms));
 }
 
-async function getVisibleSlides() {
+function addVisibleSlides(previous_slide, current_slide, next_slide) {
+  slider.appendChild(previous_slide);
+  slider.appendChild(current_slide);
+  slider.appendChild(next_slide);
+  previous_slide.classList.toggle('invisible_slide');
+  current_slide.classList.toggle('invisible_slide');
+  next_slide.classList.toggle('invisible_slide');
+}
+
+function removeVisibleSlides(previous_slide, current_slide, next_slide) {
+  slider.removeChild(previous_slide);
+  slider.removeChild(current_slide);
+  slider.removeChild(next_slide);
+  previous_slide.classList.toggle('invisible_slide');
+  current_slide.classList.toggle('invisible_slide');
+  next_slide.classList.toggle('invisible_slide');
+}
+
+async function getSlides() {
   for (let i = 0; i < slides.length; i++) {
     let previous_slide, current_slide, next_slide;
 
@@ -28,15 +46,15 @@ async function getVisibleSlides() {
     visibleSlides.push(current_slide);
     visibleSlides.push(next_slide);
 
-    visibleSlides.forEach((slide) => {
-      console.log(slide.textContent);
-    });
-    console.log("");
+    addVisibleSlides(previous_slide, current_slide, next_slide);
 
-    await sleep(3000);
+    await sleep(2000);
+
+    removeVisibleSlides(previous_slide, current_slide, next_slide);
 
     visibleSlides = [];
   }
+  getSlides();
 }
 
-getVisibleSlides();
+getSlides();
