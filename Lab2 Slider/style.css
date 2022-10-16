@@ -3,6 +3,7 @@
 }
 .slide {
   border: 1px solid black;
+  margin: 0 10px;
   width: 300px;
   height: 200px;
   background-color: #c6b0dc;

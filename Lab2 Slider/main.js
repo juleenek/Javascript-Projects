@@ -1,5 +1,10 @@
 const slider = document.querySelector('.slider');
 const slides = slider.querySelectorAll('.slide');
+const nextButton = document.querySelector('.next');
+const previousButton = document.querySelector('.previous');
+
+let index = 0;
+let previous_slide, current_slide, next_slide;
 let visibleSlides = [];
 
 slides.forEach((slide) => {
@@ -8,6 +13,10 @@ slides.forEach((slide) => {
 
 function sleep(ms) {
   return new Promise((resolveFunc) => setTimeout(resolveFunc, ms));
+}
+
+function setDelay() {
+  setTimeout(function () {}, 2000);
 }
 
 function addVisibleSlides(previous_slide, current_slide, next_slide) {
@@ -28,33 +37,38 @@ function removeVisibleSlides(previous_slide, current_slide, next_slide) {
   next_slide.classList.toggle('invisible_slide');
 }
 
-async function getSlides() {
-  for (let i = 0; i < slides.length; i++) {
-    let previous_slide, current_slide, next_slide;
+function getSlides() {
+  index === 0
+    ? (previous_slide = slides[slides.length - 1])
+    : (previous_slide = slides[index - 1]);
 
-    i === 0
-      ? (previous_slide = slides[slides.length - 1])
-      : (previous_slide = slides[i - 1]);
+  current_slide = slides[index];
 
-    current_slide = slides[i];
+  index === slides.length - 1
+    ? (next_slide = slides[0])
+    : (next_slide = slides[index + 1]);
 
-    i === slides.length - 1
-      ? (next_slide = slides[0])
-      : (next_slide = slides[i + 1]);
+  visibleSlides.push(previous_slide);
+  visibleSlides.push(current_slide);
+  visibleSlides.push(next_slide);
 
-    visibleSlides.push(previous_slide);
-    visibleSlides.push(current_slide);
-    visibleSlides.push(next_slide);
-
-    addVisibleSlides(previous_slide, current_slide, next_slide);
-
-    await sleep(2000);
-
-    removeVisibleSlides(previous_slide, current_slide, next_slide);
-
-    visibleSlides = [];
-  }
-  getSlides();
+  addVisibleSlides(previous_slide, current_slide, next_slide);
 }
+
+nextButton.addEventListener('click', () => {
+  removeVisibleSlides(previous_slide, current_slide, next_slide);
+  visibleSlides = [];
+  index++;
+  if (index > slides.length - 1) index = 0;
+  getSlides();
+});
+
+previousButton.addEventListener('click', () => {
+  removeVisibleSlides(previous_slide, current_slide, next_slide);
+  visibleSlides = [];
+  index--;
+  if (index < 0) index = slides.length - 1;
+  getSlides();
+});
 
 getSlides();
