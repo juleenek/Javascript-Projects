@@ -6,18 +6,11 @@ const previousButton = document.querySelector('.previous');
 let index = 0;
 let previous_slide, current_slide, next_slide;
 let visibleSlides = [];
+let timer;
 
 slides.forEach((slide) => {
   slide.classList.add('invisible_slide');
 });
-
-function sleep(ms) {
-  return new Promise((resolveFunc) => setTimeout(resolveFunc, ms));
-}
-
-function setDelay() {
-  setTimeout(function () {}, 2000);
-}
 
 function addVisibleSlides(previous_slide, current_slide, next_slide) {
   slider.appendChild(previous_slide);
@@ -55,20 +48,40 @@ function getSlides() {
   addVisibleSlides(previous_slide, current_slide, next_slide);
 }
 
-nextButton.addEventListener('click', () => {
+function nextSlides() {
   removeVisibleSlides(previous_slide, current_slide, next_slide);
   visibleSlides = [];
   index++;
   if (index > slides.length - 1) index = 0;
   getSlides();
-});
+}
 
-previousButton.addEventListener('click', () => {
+function previousSlides() {
   removeVisibleSlides(previous_slide, current_slide, next_slide);
   visibleSlides = [];
   index--;
   if (index < 0) index = slides.length - 1;
   getSlides();
+}
+
+nextButton.addEventListener('click', function () {
+  setTimeout(autoplayStop(), 5000);
+  nextSlides();
+  autoplayStart();
 });
 
+previousButton.addEventListener('click', function () {
+  setTimeout(autoplayStop(), 5000);
+  previousSlides();
+  autoplayStart();
+});
+
+function autoplayStart() {
+  timer = setInterval(() => nextSlides(), 4000);
+}
+function autoplayStop() {
+  clearInterval(timer);
+}
+
 getSlides();
+autoplayStart();
