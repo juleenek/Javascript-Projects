@@ -4,15 +4,27 @@ const nextButton = document.querySelector('.next');
 const previousButton = document.querySelector('.previous');
 const startButton = document.querySelector('.start');
 const pauseButton = document.querySelector('.pause');
+const dotsContainer = document.querySelector('.dots');
 
-let index = 0;
+let slideIndex = 0;
+let changeSlideTime = 3000;
 let previous_slide, current_slide, next_slide;
 let visibleSlides = [];
+let autoplayState;
 let timer;
 
 slides.forEach((slide) => {
   slide.classList.add('invisible_slide');
 });
+
+function createDots() {
+  for (let i = 0; i < slides.length; i++) {
+    const dot = document.createElement('div');
+    dot.classList.add('dot');
+    dot.classList.add(`dot_${i+1}`);
+    dotsContainer.appendChild(dot);
+  }
+}
 
 function addVisibleSlides(previous_slide, current_slide, next_slide) {
   slider.appendChild(previous_slide);
@@ -33,15 +45,15 @@ function removeVisibleSlides(previous_slide, current_slide, next_slide) {
 }
 
 function getSlides() {
-  index === 0
+  slideIndex === 0
     ? (previous_slide = slides[slides.length - 1])
-    : (previous_slide = slides[index - 1]);
+    : (previous_slide = slides[slideIndex - 1]);
 
-  current_slide = slides[index];
+  current_slide = slides[slideIndex];
 
-  index === slides.length - 1
+  slideIndex === slides.length - 1
     ? (next_slide = slides[0])
-    : (next_slide = slides[index + 1]);
+    : (next_slide = slides[slideIndex + 1]);
 
   visibleSlides.push(previous_slide);
   visibleSlides.push(current_slide);
@@ -53,24 +65,26 @@ function getSlides() {
 function nextSlides() {
   removeVisibleSlides(previous_slide, current_slide, next_slide);
   visibleSlides = [];
-  index++;
-  if (index > slides.length - 1) index = 0;
+  slideIndex++;
+  if (slideIndex > slides.length - 1) slideIndex = 0;
   getSlides();
 }
 
 function previousSlides() {
   removeVisibleSlides(previous_slide, current_slide, next_slide);
   visibleSlides = [];
-  index--;
-  if (index < 0) index = slides.length - 1;
+  slideIndex--;
+  if (slideIndex < 0) slideIndex = slides.length - 1;
   getSlides();
 }
 
 function autoplayStart() {
-  timer = setInterval(() => nextSlides(), 4000);
+  timer = setInterval(() => nextSlides(), changeSlideTime);
+  autoplayState = true;
 }
 function autoplayStop() {
   clearInterval(timer);
+  autoplayState = false;
 }
 
 nextButton.addEventListener('click', function () {
@@ -86,11 +100,12 @@ previousButton.addEventListener('click', function () {
 });
 
 startButton.addEventListener('click', function () {
-  autoplayStart();
+  if(autoplayState === false) autoplayStart();
 });
 pauseButton.addEventListener('click', function () {
-  autoplayStop();
+  if(autoplayState === true) autoplayStop();
 });
 
 getSlides();
 autoplayStart();
+createDots();
