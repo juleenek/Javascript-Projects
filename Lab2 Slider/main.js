@@ -2,6 +2,8 @@ const slider = document.querySelector('.slider');
 const slides = slider.querySelectorAll('.slide');
 const nextButton = document.querySelector('.next');
 const previousButton = document.querySelector('.previous');
+const startButton = document.querySelector('.start');
+const pauseButton = document.querySelector('.pause');
 
 let index = 0;
 let previous_slide, current_slide, next_slide;
@@ -64,6 +66,13 @@ function previousSlides() {
   getSlides();
 }
 
+function autoplayStart() {
+  timer = setInterval(() => nextSlides(), 4000);
+}
+function autoplayStop() {
+  clearInterval(timer);
+}
+
 nextButton.addEventListener('click', function () {
   setTimeout(autoplayStop(), 5000);
   nextSlides();
@@ -76,12 +85,12 @@ previousButton.addEventListener('click', function () {
   autoplayStart();
 });
 
-function autoplayStart() {
-  timer = setInterval(() => nextSlides(), 4000);
-}
-function autoplayStop() {
-  clearInterval(timer);
-}
+startButton.addEventListener('click', function () {
+  autoplayStart();
+});
+pauseButton.addEventListener('click', function () {
+  autoplayStop();
+});
 
 getSlides();
 autoplayStart();

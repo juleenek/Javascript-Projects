@@ -1,6 +1,7 @@
 .slider {
   display: flex;
 }
+
 .slide {
   border: 1px solid black;
   margin: 0 10px;
@@ -11,4 +12,21 @@
 
 .invisible_slide {
   display: none;
+}
+
+.dots {
+  display: flex;
+  gap: 10px;
+  margin: 20px 0;
+}
+
+.dot {
+  width: 10px;
+  height: 10px;
+  background-color: #d7d7d7;
+  border-radius: 50%;
+}
+
+.highlight_dot{
+  background-color: #7b7b7b;
 }
