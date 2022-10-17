@@ -12,6 +12,10 @@ let previous_slide, current_slide, next_slide;
 let visibleSlides = [];
 let autoplayState;
 let timer;
+let highlightedDot;
+
+
+// Dać klasy zeby zmienic style dla wcisnietego startu i pauzy!
 
 slides.forEach((slide) => {
   slide.classList.add('invisible_slide');
@@ -21,9 +25,11 @@ function createDots() {
   for (let i = 0; i < slides.length; i++) {
     const dot = document.createElement('div');
     dot.classList.add('dot');
-    dot.classList.add(`dot_${i+1}`);
+    dot.classList.add(`dot_${i}`);
     dotsContainer.appendChild(dot);
   }
+  highlightedDot = document.querySelector(`.dot_${slideIndex}`);
+  highlightedDot.classList.toggle('highlight_dot');
 }
 
 function addVisibleSlides(previous_slide, current_slide, next_slide) {
@@ -42,6 +48,7 @@ function removeVisibleSlides(previous_slide, current_slide, next_slide) {
   previous_slide.classList.toggle('invisible_slide');
   current_slide.classList.toggle('invisible_slide');
   next_slide.classList.toggle('invisible_slide');
+  highlightedDot.classList.toggle('highlight_dot');
 }
 
 function getSlides() {
@@ -67,6 +74,8 @@ function nextSlides() {
   visibleSlides = [];
   slideIndex++;
   if (slideIndex > slides.length - 1) slideIndex = 0;
+  highlightedDot = document.querySelector(`.dot_${slideIndex}`);
+  highlightedDot.classList.toggle('highlight_dot');
   getSlides();
 }
 
@@ -75,6 +84,8 @@ function previousSlides() {
   visibleSlides = [];
   slideIndex--;
   if (slideIndex < 0) slideIndex = slides.length - 1;
+  highlightedDot = document.querySelector(`.dot_${slideIndex}`);
+  highlightedDot.classList.toggle('highlight_dot');
   getSlides();
 }
 
@@ -100,10 +111,10 @@ previousButton.addEventListener('click', function () {
 });
 
 startButton.addEventListener('click', function () {
-  if(autoplayState === false) autoplayStart();
+  if (autoplayState === false) autoplayStart();
 });
 pauseButton.addEventListener('click', function () {
-  if(autoplayState === true) autoplayStop();
+  if (autoplayState === true) autoplayStop();
 });
 
 getSlides();
