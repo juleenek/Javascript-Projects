@@ -14,7 +14,6 @@ let autoplayState;
 let timer;
 let highlightedDot;
 
-
 // Dać klasy zeby zmienic style dla wcisnietego startu i pauzy!
 
 slides.forEach((slide) => {
@@ -111,10 +110,16 @@ previousButton.addEventListener('click', function () {
 });
 
 startButton.addEventListener('click', function () {
-  if (autoplayState === false) autoplayStart();
+  if (autoplayState === false) {
+    autoplayStart();
+    pauseButton.classList.toggle('pressed_button');
+  }
 });
 pauseButton.addEventListener('click', function () {
-  if (autoplayState === true) autoplayStop();
+  if (autoplayState === true) {
+    autoplayStop();
+    pauseButton.classList.toggle('pressed_button');
+  }
 });
 
 getSlides();

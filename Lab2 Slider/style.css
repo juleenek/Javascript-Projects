@@ -83,3 +83,10 @@ input[type='reset'] {
   width: 8px;
   background-color: #444444;
 }
+
+.pressed_button div {
+  background-color: #ffffff;
+  border: 1px solid black;
+  height: 25px;
+  width: 6px;
+}
