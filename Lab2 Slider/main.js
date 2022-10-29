@@ -5,6 +5,8 @@ const previousButton = document.querySelector('.previous');
 const startButton = document.querySelector('.start');
 const pauseButton = document.querySelector('.pause');
 const dotsContainer = document.querySelector('.dots');
+const container = document.querySelector('.container');
+const videoSlide = document.querySelectorAll('.video_slide');
 
 let slideIndex = 0;
 let changeSlideTime = 3000;
@@ -14,10 +16,21 @@ let autoplayState;
 let timer;
 let highlightedDot;
 
-// Dać klasy zeby zmienic style dla wcisnietego startu i pauzy!
-
 slides.forEach((slide) => {
   slide.classList.add('invisible_slide');
+
+  slide.addEventListener('click', function () {
+    const lightbox = slide.cloneNode(true);
+    container.appendChild(lightbox);
+    lightbox.classList.add('lightbox');
+    autoplayStop();
+
+    lightbox.addEventListener('click', function () {
+      container.removeChild(lightbox);
+      lightbox.classList.remove('lightbox');
+      autoplayStart();
+    });
+  });
 });
 
 function createDots() {
@@ -32,12 +45,17 @@ function createDots() {
 }
 
 function addVisibleSlides(previous_slide, current_slide, next_slide) {
+  playVideos();
   slider.appendChild(previous_slide);
   slider.appendChild(current_slide);
   slider.appendChild(next_slide);
   previous_slide.classList.toggle('invisible_slide');
   current_slide.classList.toggle('invisible_slide');
   next_slide.classList.toggle('invisible_slide');
+
+  previous_slide.classList.toggle('previous_slide');
+  current_slide.classList.toggle('current_slide');
+  next_slide.classList.toggle('next_slide');
 }
 
 function removeVisibleSlides(previous_slide, current_slide, next_slide) {
@@ -47,6 +65,11 @@ function removeVisibleSlides(previous_slide, current_slide, next_slide) {
   previous_slide.classList.toggle('invisible_slide');
   current_slide.classList.toggle('invisible_slide');
   next_slide.classList.toggle('invisible_slide');
+
+  previous_slide.classList.toggle('previous_slide');
+  current_slide.classList.toggle('current_slide');
+  next_slide.classList.toggle('next_slide');
+
   highlightedDot.classList.toggle('highlight_dot');
 }
 
@@ -95,6 +118,12 @@ function autoplayStart() {
 function autoplayStop() {
   clearInterval(timer);
   autoplayState = false;
+}
+
+function playVideos() {
+  videoSlide.forEach((video) => {
+    video.play();
+  });
 }
 
 nextButton.addEventListener('click', function () {
