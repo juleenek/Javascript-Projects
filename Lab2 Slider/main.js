@@ -18,7 +18,10 @@ let highlightedDot;
 
 slides.forEach((slide) => {
   slide.classList.add('invisible_slide');
+  addLightBox(slide);
+});
 
+function addLightBox(slide) {
   slide.addEventListener('click', function () {
     const lightbox = slide.cloneNode(true);
     container.appendChild(lightbox);
@@ -31,7 +34,7 @@ slides.forEach((slide) => {
       autoplayStart();
     });
   });
-});
+}
 
 function createDots() {
   for (let i = 0; i < slides.length; i++) {

@@ -22,7 +22,6 @@ function createInput(elementIndex) {
   inputLabel.textContent = `${elementIndex}`;
 
   const inputElement = document.createElement('input');
-  // Dodać placeholder
 
   field.appendChild(inputLabel);
   field.appendChild(inputElement);
