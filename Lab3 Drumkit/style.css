@@ -1,6 +1,6 @@
 @font-face {
   font-family: 'Kanit';
-  src: url('asstes/Kanit-Regular.ttf');
+  src: url('assets/Kanit-Regular.ttf');
 }
 
 body {
@@ -82,10 +82,11 @@ input[type='submit'] {
 }
 
 .track {
+  padding: 7px 0;
   display: flex;
 }
 
-.time {
+.track_name {
   display: flex;
   padding: 0 10px;
   align-items: center;

@@ -12,7 +12,7 @@ body {
   padding: 0;
   position: relative;
   font-family: Kanit;
-  color: #000000c7;
+  color: #000000;
 }
 body::before {
   content: '';
@@ -21,7 +21,7 @@ body::before {
   left: 0;
   width: 100vw;
   height: 100vh;
-  opacity: 0.4;
+  opacity: 0.1;
   z-index: -1;
   background: url('asstes/numbers.gif');
 }
@@ -31,7 +31,7 @@ body::before {
 
 .container {
   padding: 20px;
-  background-color: aliceblue;
+  background-color: rgb(255, 255, 255);
   width: fit-content;
 }
 
