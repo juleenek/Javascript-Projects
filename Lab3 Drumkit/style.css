@@ -88,7 +88,8 @@ input[type='submit'] {
 
 .track_name {
   display: flex;
-  padding: 0 10px;
+  width: 80px;
+  padding-left: 20px;
   align-items: center;
   font-size: 17px;
 }
