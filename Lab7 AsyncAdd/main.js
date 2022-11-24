@@ -19,11 +19,19 @@ const addNumbers = async (numbers) => {
   return sum;
 };
 
-const measureTime = async () => {
-  performance.mark('start');
-  await addNumbers([10, 10, 10, 10]);
-  performance.mark('end');
-  console.log(performance.measure('measure time', 'start', 'end'));
+const optimalizeAddNumbers = async (numbers) => {
 };
 
-measureTime();
+const measureTime = async (callback) => {
+  performance.mark('start')
+  await callback;
+  performance.mark('end')
+  const measure = performance.measure('measure time', 'start', 'end')
+  console.log(callback);
+  console.log(measure);
+};
+
+measureTime(addNumbers([10, 1, 9]));
+
+// Promiseall, dowhile
+
