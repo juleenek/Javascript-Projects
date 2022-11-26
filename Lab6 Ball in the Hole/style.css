@@ -1,0 +1,35 @@
+body {
+  background-color: #000000;
+}
+
+.container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+}
+
+.board-box {
+  box-shadow: 0 0 0.1vw 0.4vw #fff7f7, 0 0 0.4vw 0.1vw #b372e9,
+    0 0 3vw 0.1vw #990be5, inset 0 0 1.5vw 0vw #990be5,
+    inset 0 0 0.4vw 0vw #b372e9, inset 0 0 0.5vw 0.2vw #fff7f7;
+
+  width: 350px;
+  height: 600px;
+  z-index: 10;
+}
+
+.results-box {
+  width: 350px;
+  height: 70px;
+  margin-bottom: 40px;
+  z-index: 1;
+  box-shadow: 
+  0 0 0.1vw 0.4vw #fff7f7, 
+  0 0 0.4vw 0.1vw #b372e9,
+  0 0 3vw 0.1vw #990be5, 
+  inset 0 0 1.5vw 0vw #990be5,
+  inset 0 0 0.4vw 0vw #b372e9, 
+  inset 0 0 0.5vw 0.2vw #fff7f7;
+}
