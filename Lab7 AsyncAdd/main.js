@@ -20,13 +20,17 @@ const addNumbers = async (numbers) => {
 };
 
 const optimalizeAddNumbers = async (numbers) => {
+  let list = [];
+  for (let index = 0; index < numbers.length - 1; index++) {
+    
+  }
 };
 
 const measureTime = async (callback) => {
-  performance.mark('start')
+  performance.mark('start');
   await callback;
-  performance.mark('end')
-  const measure = performance.measure('measure time', 'start', 'end')
+  performance.mark('end');
+  const measure = performance.measure('measure time', 'start', 'end');
   console.log(callback);
   console.log(measure);
 };
@@ -34,4 +38,3 @@ const measureTime = async (callback) => {
 measureTime(addNumbers([10, 1, 9]));
 
 // Promiseall, dowhile
-
