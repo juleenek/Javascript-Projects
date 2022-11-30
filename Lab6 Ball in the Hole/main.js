@@ -23,9 +23,13 @@ const game = {
 function isBallNextToWall(ballPositionHorizontal, ballPositionVertical) {
   if (ballPositionHorizontal === 0 || ballPositionHorizontal === 328) {
     game.isBallNextToWallX = true;
-    x = SENSORS_LIMIT * 2;
-    if(ballPositionHorizontal === 328) ballPositionHorizontal = 328;
-    if(ballPositionHorizontal === 0) ballPositionHorizontal = 0;
+
+    if (ballPositionHorizontal === 328) {
+      x = SENSORS_LIMIT * 2;
+    }
+    if (ballPositionHorizontal === 0) {
+      x = 0;
+    }
   }
 
   if (ballPositionHorizontal !== 0 && ballPositionHorizontal !== 328) {
@@ -34,9 +38,13 @@ function isBallNextToWall(ballPositionHorizontal, ballPositionVertical) {
 
   if (ballPositionVertical === 0 || ballPositionVertical === 580) {
     game.isBallNextToWallY = true;
-    y = SENSORS_LIMIT * 2;
-    if(ballPositionVertical === 580) ballPositionVertical = 580;
-    if(ballPositionVertical === 0) ballPositionVertical = 0;
+
+    if (ballPositionVertical === 580) {
+      y = SENSORS_LIMIT * 2;
+    }
+    if (ballPositionVertical === 0) {
+      y = 0;
+    }
   }
 
   if (ballPositionVertical !== 0 && ballPositionVertical !== 580) {
@@ -61,11 +69,15 @@ window.addEventListener('deviceorientation', handleOrientation);
 function animate() {
   if (x === SENSORS_LIMIT * 2) {
     ballPositionHorizontal = 328;
+  } else if (x === 0) {
+    ballPositionHorizontal = 0;
   } else {
     ballPositionHorizontal = (maxX * x) / (SENSORS_LIMIT * 2) + ball_X;
   }
   if (y === SENSORS_LIMIT * 2) {
     ballPositionVertical = 580;
+  } else if (y == 0) {
+    ballPositionVertical = 0;
   } else {
     ballPositionVertical = (maxY * y) / (SENSORS_LIMIT * 2) + ball_Y;
   }
