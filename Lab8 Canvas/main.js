@@ -15,15 +15,15 @@ let speedNum;
 ctx.rect(0, 0, CANVAS_SIZE, CANVAS_SIZE);
 ctx.stroke();
 
-function onChangeParseInt(input, inputValue) {
-  input.addEventListener('change', () => {
-    inputValue = parseInt(document.querySelector('.dots-number').value);
-    if (isNaN(inputValue)) inputValue = 0;
-  });
-}
+dotsNumInput.addEventListener('change', () => {
+  dotsNum = parseInt(document.querySelector('.dots-number').value);
+  if (isNaN(dotsNum)) dotsNum = 0;
+});
 
-onChangeParseInt(dotsNumInput, dotsNum);
-onChangeParseInt(speedNumInput, speedNum);
+speedNumInput.addEventListener('change', () => {
+  speedNum = parseInt(document.querySelector('.speed').value);
+  if (isNaN(speedNum)) speedNum = 0;
+});
 
 const dot = {
   x: 0,
@@ -49,16 +49,17 @@ function getRandomDotSize() {
   return Math.random() * (17 - 7) + 7;
 }
 
-
-// MAX Y to CANVAS_SIZE - 100 - size
-// MAX X to CANVAS_SIZE - size
-
 function getRandomDotXPosition(size) {
-  return Math.random() * ((CANVAS_SIZE - size) - size) + size;
+  return Math.random() * (CANVAS_SIZE - size - size) + size;
 }
 
 function getRandomDotYPosition(size) {
-  return Math.random() * ((CANVAS_SIZE - 100 - size) - size) + size;
+  return Math.random() * (CANVAS_SIZE - 100 - size - size) + size;
 }
 
-drawDot( { size: 10, speed: 1, color: '#f098ff' });
+dotsNumInput.addEventListener('change', () => {
+  ctx.clearRect(0, 0, CANVAS_SIZE, CANVAS_SIZE);
+  for (let index = 0; index < dotsNum; index++) {
+    drawDot({ size: getRandomDotSize(), speed: 1, color: '#f098ff' });
+  }
+});
