@@ -34,6 +34,9 @@ const dot = {
 };
 
 function drawDot(dot) {
+  dot.x = getRandomDotXPosition(dot.size);
+  dot.y = getRandomDotYPosition(dot.size);
+
   ctx.beginPath();
   ctx.arc(dot.x, dot.y, dot.size, 0, 2 * Math.PI);
   ctx.shadowColor = `${dot.color}`;
@@ -46,8 +49,16 @@ function getRandomDotSize() {
   return Math.random() * (17 - 7) + 7;
 }
 
-function getRandomDotPosition(dot) {
-  return Math.random() * (MAX_DOT_POSITION - dot.size) + dot.size;
+
+// MAX Y to CANVAS_SIZE - 100 - size
+// MAX X to CANVAS_SIZE - size
+
+function getRandomDotXPosition(size) {
+  return Math.random() * ((CANVAS_SIZE - size) - size) + size;
 }
 
-drawDot({ x: 21, y: CANVAS_SIZE , size: getRandomDotSize(), speed: 1, color: '#f098ff' });
+function getRandomDotYPosition(size) {
+  return Math.random() * ((CANVAS_SIZE - 100 - size) - size) + size;
+}
+
+drawDot( { size: 10, speed: 1, color: '#f098ff' });
