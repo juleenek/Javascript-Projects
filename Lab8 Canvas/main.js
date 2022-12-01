@@ -6,6 +6,7 @@ const ctx = canvas.getContext('2d');
 const MIN_DOT_POSITION = 21;
 const MAX_DOT_POSITION = 21;
 const CANVAS_SIZE = 700;
+const colors = ['#f098ff', '#ffffff', '#95c0ff', '#ff8b8b', '#b9ff8b'];
 
 const dotsNumInput = document.querySelector('.dots-number');
 const speedNumInput = document.querySelector('.speed');
@@ -60,6 +61,6 @@ function getRandomDotYPosition(size) {
 dotsNumInput.addEventListener('change', () => {
   ctx.clearRect(0, 0, CANVAS_SIZE, CANVAS_SIZE);
   for (let index = 0; index < dotsNum; index++) {
-    drawDot({ size: getRandomDotSize(), speed: 1, color: '#f098ff' });
+    drawDot({ size: getRandomDotSize(), speed: 1, color: `${colors[Math.floor(Math.random()*colors.length)]}` });
   }
 });
