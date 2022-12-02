@@ -3,10 +3,8 @@
 const canvas = document.querySelector('.canvas');
 const ctx = canvas.getContext('2d');
 
-const MIN_DOT_POSITION = 21;
-const MAX_DOT_POSITION = 21;
 const CANVAS_SIZE = 700;
-const colors = ['#f098ff', '#ffffff', '#95c0ff', '#ff8b8b', '#b9ff8b'];
+const colors = ['#c7c7c7', '#ffffff', '#7a7a7a', '#505050', '#a6a6a6', '#c8c8c8', '#393939'];
 
 const dotsNumInput = document.querySelector('.dots-number');
 const speedNumInput = document.querySelector('.speed');
@@ -64,3 +62,4 @@ dotsNumInput.addEventListener('change', () => {
     drawDot({ size: getRandomDotSize(), speed: 1, color: `${colors[Math.floor(Math.random()*colors.length)]}` });
   }
 });
+
