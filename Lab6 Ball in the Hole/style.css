@@ -52,8 +52,10 @@ body {
   left: 165px;
   height: 40px;
   width: 40px;
-  background-color: #dcdada;
-  box-shadow: inset 0 0 1.3vw 0vw #000000, inset 0 0 0.4vw 0vw #000000;
+  background-color: #000000;
+  box-shadow: 0 0 0.1vw 0.25vw #fff7f7, 0 0 0.4vw 0.1vw #b372e9,
+    0 0 1.5vw 0.1vw #990be5, inset 0 0 1.5vw 0.5vw #990be57b,
+    inset 0 0 0.4vw 0vw #b372e952, inset 0 0 0.5vw 0.2vw #fff7f7c1;
 }
 
 .result {
@@ -82,4 +84,8 @@ body {
   box-shadow: 0 0 0.1vw 0.1vw #f97474, 0 0 0.1vw 0.1vw #f49090,
     0 0 3vw 0vw #f49090, inset 0 0 1.5vw 0vw #ef8585,
     inset 0 0 0.4vw 0vw #f77f7f, inset 0 0 0.5vw 0.2vw #ffffff;
+}
+
+.deletedPoint {
+  display: none;
 }

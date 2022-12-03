@@ -1,8 +1,16 @@
 'use strict';
 
-export const SENSORS_LIMIT = 25;
-const MAX_POSITION_X = 328;
-const MAX_POSITION_Y = 580;
+import {
+  currentGame,
+  positivePoint,
+  negativePoint,
+  SENSORS_LIMIT,
+} from './modules/models.js';
+
+import { getRandomX, getRandomY } from './modules/random.js';
+
+export const MAX_POSITION_X = 328;
+export const MAX_POSITION_Y = 580;
 const SPEED_BALL = SENSORS_LIMIT / 4;
 
 const ball = document.querySelector('.ball');
@@ -13,12 +21,14 @@ let moveX = 0;
 let moveY = 0;
 let ballPositionX = 165;
 let ballPositionY = 450;
+let pointSum = 0;
 
-const currentGame = {
-  positivePoints: 5,
-  negativePoints: 3,
-  points: 0,
-};
+export const takenPointsPositionX = [];
+export const takenPointsPositionY = [];
+const positivePoints = [];
+const negativePoints = [];
+const positivePointsDOM = [];
+const negativePointsDOM = [];
 
 function handleOrientation(event) {
   x = event.gamma;
@@ -46,44 +56,62 @@ function changePosition() {
   }
 }
 
+function checkNearPositivePoints() {
+  for (let index = 0; index < positivePoints.length; index++) {
+    if (
+      ballPositionX > positivePoints[index].x - 15 &&
+      ballPositionX < positivePoints[index].x + 15 &&
+      ballPositionY > positivePoints[index].y - 15 &&
+      ballPositionY < positivePoints[index].y + 15
+    ) {
+      const pointDOM = positivePointsDOM[index];
+      pointSum += 1;
+      boardBox.removeChild(pointDOM);
+      positivePoints.splice(index);
+      positivePointsDOM.splice(index);
+    }
+  }
+  console.log(pointSum);
+}
+
 function animate() {
   changePosition();
+  checkNearPositivePoints();
   window.requestAnimationFrame(animate);
 }
 
 window.requestAnimationFrame(animate);
 
-function getRandomX() {
-  const random = Math.random() * MAX_POSITION_X;
-  return (random > 140 && random < 200) ||
-    random < 20 ||
-    random > MAX_POSITION_X - 20
-    ? getRandomX()
-    : random;
-}
-
-function getRandomY() {
-  const random = Math.random() * MAX_POSITION_Y;
-  return (random > 420 && random < 470) ||
-    (random > 20 && random < 70) ||
-    random < 20 ||
-    random > MAX_POSITION_Y - 20
-    ? getRandomX()
-    : random;
-}
-
 function generatePositivePoint() {
+  const randomX = getRandomX();
+  const randomY = getRandomY();
   const point = document.createElement('div');
+
   point.classList.add('positive-point');
-  point.style.left = `${getRandomX()}px`;
-  point.style.top = `${getRandomY()}px`;
+  point.style.left = `${randomX}px`;
+  point.style.top = `${randomY}px`;
+
+  takenPointsPositionX.push(randomX);
+  takenPointsPositionY.push(randomY);
+  positivePoints.push({ x: randomX, y: randomY });
+  positivePointsDOM.push(point);
+
   boardBox.appendChild(point);
 }
 function generateNegativePoint() {
+  const randomX = getRandomX();
+  const randomY = getRandomY();
   const point = document.createElement('div');
+
   point.classList.add('negative-point');
-  point.style.left = `${getRandomX()}px`;
-  point.style.top = `${getRandomY()}px`;
+  point.style.left = `${randomX}px`;
+  point.style.top = `${randomY}px`;
+
+  takenPointsPositionX.push(randomX);
+  takenPointsPositionY.push(randomY);
+  negativePoints.push({ x: randomX, y: randomY });
+  negativePointsDOM.push(point);
+
   boardBox.appendChild(point);
 }
 
