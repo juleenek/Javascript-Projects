@@ -16,11 +16,13 @@ let SPEED_BALL = 0;
 const ball = document.querySelector('.ball');
 const pointsBox = document.querySelector('.points-box');
 const pointsTitle = document.querySelector('.points');
+const winPanel = document.querySelector('.win-panel');
 
 const easyBtn = document.querySelector('.easy');
 const mediumBtn = document.querySelector('.medium');
 const hardBtn = document.querySelector('.hard');
 const startPanel = document.querySelector('.start-panel');
+const newGameBtn = document.querySelector('.new-game');
 
 let isLevelChoosen = false;
 let x, y;
@@ -102,8 +104,6 @@ function checkNearPositivePoints() {
       positivePoints.splice(index, 1);
       positivePointsDOM.splice(index, 1);
       pointsTitle.textContent = `Points: ${pointSum}`;
-      console.log(positivePoints);
-      console.log(positivePointsDOM);
     }
   }
 }
@@ -126,6 +126,7 @@ function animate() {
     changePosition();
     checkNearPositivePoints();
     checkNearNegativePoints();
+    win();
     window.requestAnimationFrame(animate);
   }
 }
@@ -193,11 +194,12 @@ function newGame() {
   }
 }
 
-chooseLevel();
+function startNewGame() {
+  chooseLevel();
+  choosingLevelListener();
+}
 
-setReadyListener();
-
-function setReadyListener() {
+function choosingLevelListener() {
   const readyListener = () => {
     if (isLevelChoosen) {
       return newGame();
@@ -207,3 +209,24 @@ function setReadyListener() {
   readyListener();
 }
 
+function win() {
+  if (
+    ballPositionX > 165 &&
+    ballPositionX < 205 &&
+    ballPositionY > 50 &&
+    ballPositionY < 80 &&
+    pointSum === currentGame.positivePoints
+  ) {
+    winPanel.classList.remove('invisible');
+    isGameStopped = true;
+    ball.style.top = `${57}px`;
+    ball.style.left = `${172}px`;
+  }
+}
+
+startNewGame();
+newGameBtn.addEventListener('click', () => {
+  isLevelChoosen = false;
+  startNewGame();
+  winPanel.classList.add('invisible');
+});

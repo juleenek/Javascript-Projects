@@ -86,11 +86,6 @@ body {
     inset 0 0 0.4vw 0vw #f77f7f, inset 0 0 0.5vw 0.2vw #ffffff;
 }
 
-.points {
-  color: #ffffff;
-  padding-left: 10px;
-}
-
 .points-box {
   position: absolute;
   top: 0;
@@ -123,5 +118,36 @@ body {
 }
 
 .invisible {
-  display: none;
+  display: none !important;
+}
+
+.results-box {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  color: #ffffff;
+}
+
+.results-box h3 {
+  padding: 0 40px;
+}
+
+.win-panel {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  color: #ffffff;
+  padding: 0 100px;
+  height: 150px;
+  width: 230px;
+  z-index: 100;
+  position: absolute;
+  background-color: #000000;
+  border: 2px solid #ffffff;
+}
+
+.win-panel h2 {
+  margin: 0;
+  padding-bottom: 15px;
 }
