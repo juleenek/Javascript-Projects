@@ -11,26 +11,58 @@ import { getRandomX, getRandomY } from './modules/random.js';
 
 export const MAX_POSITION_X = 328;
 export const MAX_POSITION_Y = 580;
-const SPEED_BALL = SENSORS_LIMIT / 2;
+let SPEED_BALL = 0;
 
 const ball = document.querySelector('.ball');
 const pointsBox = document.querySelector('.points-box');
 const pointsTitle = document.querySelector('.points');
 
-let x, y;
-let isGameStopped = false;
-let moveX = 0;
-let moveY = 0;
-let ballPositionX = 165;
-let ballPositionY = 450;
-let pointSum = 0;
+const easyBtn = document.querySelector('.easy');
+const mediumBtn = document.querySelector('.medium');
+const hardBtn = document.querySelector('.hard');
+const startPanel = document.querySelector('.start-panel');
 
-export let takenPointsPositionX = [];
-export let takenPointsPositionY = [];
-let positivePoints = [];
-let negativePoints = [];
-let positivePointsDOM = [];
-let negativePointsDOM = [];
+let isLevelChoosen = false;
+let x, y;
+let isGameStopped;
+let moveX;
+let moveY;
+let ballPositionX;
+let ballPositionY;
+let pointSum;
+
+export let takenPointsPositionX;
+export let takenPointsPositionY;
+let positivePoints;
+let negativePoints;
+let positivePointsDOM;
+let negativePointsDOM;
+
+function chooseLevel() {
+  startPanel.classList.remove('invisible');
+
+  easyBtn.addEventListener('click', () => {
+    currentGame.positivePoints = 3;
+    currentGame.negativePoints = 3;
+    SPEED_BALL = SENSORS_LIMIT / 2;
+    isLevelChoosen = true;
+    startPanel.classList.add('invisible');
+  });
+  mediumBtn.addEventListener('click', () => {
+    currentGame.positivePoints = 4;
+    currentGame.negativePoints = 4;
+    SPEED_BALL = SENSORS_LIMIT / 3;
+    isLevelChoosen = true;
+    startPanel.classList.add('invisible');
+  });
+  hardBtn.addEventListener('click', () => {
+    currentGame.positivePoints = 5;
+    currentGame.negativePoints = 5;
+    SPEED_BALL = SENSORS_LIMIT / 4;
+    isLevelChoosen = true;
+    startPanel.classList.add('invisible');
+  });
+}
 
 function handleOrientation(event) {
   x = event.gamma;
@@ -44,8 +76,6 @@ function handleOrientation(event) {
   moveX = x / SPEED_BALL;
   moveY = y / SPEED_BALL;
 }
-
-window.addEventListener('deviceorientation', handleOrientation);
 
 function changePosition() {
   if (ballPositionX + moveX < MAX_POSITION_X && ballPositionX + moveX > 0) {
@@ -61,10 +91,10 @@ function changePosition() {
 function checkNearPositivePoints() {
   for (let index = 0; index < positivePoints.length; index++) {
     if (
-      ballPositionX > positivePoints[index].x - 15 &&
-      ballPositionX < positivePoints[index].x + 15 &&
-      ballPositionY > positivePoints[index].y - 15 &&
-      ballPositionY < positivePoints[index].y + 15
+      ballPositionX > positivePoints[index].x - 20 &&
+      ballPositionX < positivePoints[index].x + 20 &&
+      ballPositionY > positivePoints[index].y - 20 &&
+      ballPositionY < positivePoints[index].y + 20
     ) {
       const pointDOM = positivePointsDOM[index];
       pointSum += 1;
@@ -81,10 +111,10 @@ function checkNearPositivePoints() {
 function checkNearNegativePoints() {
   for (let index = 0; index < negativePoints.length; index++) {
     if (
-      ballPositionX > negativePoints[index].x - 15 &&
-      ballPositionX < negativePoints[index].x + 15 &&
-      ballPositionY > negativePoints[index].y - 15 &&
-      ballPositionY < negativePoints[index].y + 15
+      ballPositionX > negativePoints[index].x - 20 &&
+      ballPositionX < negativePoints[index].x + 20 &&
+      ballPositionY > negativePoints[index].y - 20 &&
+      ballPositionY < negativePoints[index].y + 20
     ) {
       newGame();
     }
@@ -99,8 +129,6 @@ function animate() {
     window.requestAnimationFrame(animate);
   }
 }
-
-window.requestAnimationFrame(animate);
 
 function generatePositivePoint() {
   const randomX = getRandomX();
@@ -136,13 +164,6 @@ function generateNegativePoint() {
   pointsBox.appendChild(point);
 }
 
-for (let index = 0; index < currentGame.negativePoints; index++) {
-  generateNegativePoint();
-}
-for (let index = 0; index < currentGame.positivePoints; index++) {
-  generatePositivePoint();
-}
-
 function newGame() {
   moveX = 0;
   moveY = 0;
@@ -161,6 +182,9 @@ function newGame() {
 
   pointsBox.replaceChildren();
 
+  window.addEventListener('deviceorientation', handleOrientation);
+  window.requestAnimationFrame(animate);
+
   for (let index = 0; index < currentGame.negativePoints; index++) {
     generateNegativePoint();
   }
@@ -168,3 +192,18 @@ function newGame() {
     generatePositivePoint();
   }
 }
+
+chooseLevel();
+
+setReadyListener();
+
+function setReadyListener() {
+  const readyListener = () => {
+    if (isLevelChoosen) {
+      return newGame();
+    }
+    return setTimeout(readyListener, 250);
+  };
+  readyListener();
+}
+

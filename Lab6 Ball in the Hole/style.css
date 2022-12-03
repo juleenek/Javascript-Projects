@@ -98,3 +98,30 @@ body {
   width: 100%;
   height: 100%;
 }
+
+.start-panel {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  color: #ffffff;
+  padding: 0 100px;
+  height: 150px;
+  z-index: 100;
+  position: absolute;
+  background-color: #000000;
+  border: 2px solid #ffffff;
+}
+
+.levels {
+  display: flex;
+  justify-content: space-between;
+}
+
+.difficulty-title {
+  margin: 0;
+  padding-bottom: 20px;
+}
+
+.invisible {
+  display: none;
+}
