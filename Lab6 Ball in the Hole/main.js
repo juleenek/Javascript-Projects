@@ -11,10 +11,11 @@ import { getRandomX, getRandomY } from './modules/random.js';
 
 export const MAX_POSITION_X = 328;
 export const MAX_POSITION_Y = 580;
-const SPEED_BALL = SENSORS_LIMIT / 4;
+const SPEED_BALL = SENSORS_LIMIT / 2;
 
 const ball = document.querySelector('.ball');
 const boardBox = document.querySelector('.board-box');
+const pointsDOM = document.querySelector('.points');
 
 let x, y;
 let moveX = 0;
@@ -67,15 +68,34 @@ function checkNearPositivePoints() {
       const pointDOM = positivePointsDOM[index];
       pointSum += 1;
       boardBox.removeChild(pointDOM);
-      positivePoints.splice(index);
-      positivePointsDOM.splice(index);
+      positivePoints.splice(index, 1);
+      positivePointsDOM.splice(index, 1);
+      pointsDOM.textContent = `Points: ${pointSum}`
+      console.log(positivePoints);
+      console.log(positivePointsDOM);
     }
   }
-  console.log(pointSum);
 }
+
+// function checkNearNegativePoints() {
+//   for (let index = 0; index < negativePoints.length; index++) {
+//     if (
+//       ballPositionX > negativePoints[index].x - 15 &&
+//       ballPositionX < negativePoints[index].x + 15 &&
+//       ballPositionY > negativePoints[index].y - 15 &&
+//       ballPositionY < negativePoints[index].y + 15
+//     ) {
+//       const pointDOM = negativePointsDOM[index];
+//       boardBox.removeChild(pointDOM);
+//       negativePoints.splice(index);
+//       negativePointsDOM.splice(index);
+//     }
+//   }
+// }
 
 function animate() {
   changePosition();
+
   checkNearPositivePoints();
   window.requestAnimationFrame(animate);
 }
