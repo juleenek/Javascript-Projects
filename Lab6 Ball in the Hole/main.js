@@ -14,22 +14,23 @@ export const MAX_POSITION_Y = 580;
 const SPEED_BALL = SENSORS_LIMIT / 2;
 
 const ball = document.querySelector('.ball');
-const boardBox = document.querySelector('.board-box');
-const pointsDOM = document.querySelector('.points');
+const pointsBox = document.querySelector('.points-box');
+const pointsTitle = document.querySelector('.points');
 
 let x, y;
+let isGameStopped = false;
 let moveX = 0;
 let moveY = 0;
 let ballPositionX = 165;
 let ballPositionY = 450;
 let pointSum = 0;
 
-export const takenPointsPositionX = [];
-export const takenPointsPositionY = [];
-const positivePoints = [];
-const negativePoints = [];
-const positivePointsDOM = [];
-const negativePointsDOM = [];
+export let takenPointsPositionX = [];
+export let takenPointsPositionY = [];
+let positivePoints = [];
+let negativePoints = [];
+let positivePointsDOM = [];
+let negativePointsDOM = [];
 
 function handleOrientation(event) {
   x = event.gamma;
@@ -67,37 +68,36 @@ function checkNearPositivePoints() {
     ) {
       const pointDOM = positivePointsDOM[index];
       pointSum += 1;
-      boardBox.removeChild(pointDOM);
+      pointsBox.removeChild(pointDOM);
       positivePoints.splice(index, 1);
       positivePointsDOM.splice(index, 1);
-      pointsDOM.textContent = `Points: ${pointSum}`
+      pointsTitle.textContent = `Points: ${pointSum}`;
       console.log(positivePoints);
       console.log(positivePointsDOM);
     }
   }
 }
 
-// function checkNearNegativePoints() {
-//   for (let index = 0; index < negativePoints.length; index++) {
-//     if (
-//       ballPositionX > negativePoints[index].x - 15 &&
-//       ballPositionX < negativePoints[index].x + 15 &&
-//       ballPositionY > negativePoints[index].y - 15 &&
-//       ballPositionY < negativePoints[index].y + 15
-//     ) {
-//       const pointDOM = negativePointsDOM[index];
-//       boardBox.removeChild(pointDOM);
-//       negativePoints.splice(index);
-//       negativePointsDOM.splice(index);
-//     }
-//   }
-// }
+function checkNearNegativePoints() {
+  for (let index = 0; index < negativePoints.length; index++) {
+    if (
+      ballPositionX > negativePoints[index].x - 15 &&
+      ballPositionX < negativePoints[index].x + 15 &&
+      ballPositionY > negativePoints[index].y - 15 &&
+      ballPositionY < negativePoints[index].y + 15
+    ) {
+      newGame();
+    }
+  }
+}
 
 function animate() {
-  changePosition();
-
-  checkNearPositivePoints();
-  window.requestAnimationFrame(animate);
+  if (isGameStopped === false) {
+    changePosition();
+    checkNearPositivePoints();
+    checkNearNegativePoints();
+    window.requestAnimationFrame(animate);
+  }
 }
 
 window.requestAnimationFrame(animate);
@@ -116,8 +116,9 @@ function generatePositivePoint() {
   positivePoints.push({ x: randomX, y: randomY });
   positivePointsDOM.push(point);
 
-  boardBox.appendChild(point);
+  pointsBox.appendChild(point);
 }
+
 function generateNegativePoint() {
   const randomX = getRandomX();
   const randomY = getRandomY();
@@ -132,7 +133,7 @@ function generateNegativePoint() {
   negativePoints.push({ x: randomX, y: randomY });
   negativePointsDOM.push(point);
 
-  boardBox.appendChild(point);
+  pointsBox.appendChild(point);
 }
 
 for (let index = 0; index < currentGame.negativePoints; index++) {
@@ -140,4 +141,30 @@ for (let index = 0; index < currentGame.negativePoints; index++) {
 }
 for (let index = 0; index < currentGame.positivePoints; index++) {
   generatePositivePoint();
+}
+
+function newGame() {
+  moveX = 0;
+  moveY = 0;
+  isGameStopped = false;
+  ballPositionX = 165;
+  ballPositionY = 450;
+  pointSum = 0;
+  pointsTitle.textContent = `Points: ${pointSum}`;
+
+  takenPointsPositionX = [];
+  takenPointsPositionY = [];
+  positivePoints = [];
+  negativePoints = [];
+  positivePointsDOM = [];
+  negativePointsDOM = [];
+
+  pointsBox.replaceChildren();
+
+  for (let index = 0; index < currentGame.negativePoints; index++) {
+    generateNegativePoint();
+  }
+  for (let index = 0; index < currentGame.positivePoints; index++) {
+    generatePositivePoint();
+  }
 }
