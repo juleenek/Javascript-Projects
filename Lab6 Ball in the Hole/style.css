@@ -1,3 +1,8 @@
+@font-face {
+  font-family: 'Electrolize';
+  src: url('./fonts/Electrolize-Regular.ttf');
+}
+
 body {
   background-color: #000000;
 }
@@ -7,6 +12,7 @@ body {
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  font-family: 'Electrolize';
   height: 100vh;
 }
 
@@ -150,4 +156,20 @@ body {
 .win-panel h2 {
   margin: 0;
   padding-bottom: 15px;
+}
+
+button {
+  background: none;
+  border: medium none;
+  color: #ffffff;
+  font-size: 16px;
+  font-weight: normal;
+  line-height: 1.42rem;
+  margin: 0;
+  padding: 0;
+  text-decoration: none;
+}
+
+.lvl-btn:hover {
+  text-shadow: 0 0 0.8vw #fff7f7
 }
