@@ -1,10 +1,8 @@
 const watch = document.querySelector('.watch');
 
 let prevTime,
-  stopwatchInterval,
-  elapsedTime = 0;
-
-const gameEndTimes = [];
+  stopwatchInterval = 0;
+let elapsedTime = 0;
 
 function updateTime() {
   let tempTime = elapsedTime;
@@ -52,4 +50,4 @@ function resetTime() {
   updateTime();
 }
 
-export { updateTime, startTime, pauseTime, resetTime, gameEndTimes };
+export { updateTime, startTime, pauseTime, resetTime, elapsedTime };

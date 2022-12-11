@@ -10,12 +10,18 @@ import {
 import { getRandomX, getRandomY } from './modules/random.js';
 
 import {
-  updateTime,
   startTime,
   pauseTime,
   resetTime,
-  gameEndTimes,
+  elapsedTime,
 } from './modules/watch.js';
+
+import {
+  gameEndTimes,
+  displayList,
+  hideList,
+  leaderboardEasy,
+} from './modules/list.js';
 
 export const MAX_POSITION_X = 328;
 export const MAX_POSITION_Y = 580;
@@ -25,6 +31,7 @@ const ball = document.querySelector('.ball');
 const pointsBox = document.querySelector('.points-box');
 const pointsTitle = document.querySelector('.points');
 const winPanel = document.querySelector('.win-panel');
+const trophy = document.querySelector('.trophy');
 
 const easyBtn = document.querySelector('.easy');
 const mediumBtn = document.querySelector('.medium');
@@ -52,6 +59,7 @@ function chooseLevel() {
   startPanel.classList.remove('invisible');
 
   easyBtn.addEventListener('click', () => {
+    currentGame.difficulty = 'easy';
     currentGame.positivePoints = 3;
     currentGame.negativePoints = 3;
     SPEED_BALL = SENSORS_LIMIT / 2;
@@ -59,6 +67,7 @@ function chooseLevel() {
     startPanel.classList.add('invisible');
   });
   mediumBtn.addEventListener('click', () => {
+    currentGame.difficulty = 'medium';
     currentGame.positivePoints = 4;
     currentGame.negativePoints = 4;
     SPEED_BALL = SENSORS_LIMIT / 3;
@@ -66,6 +75,7 @@ function chooseLevel() {
     startPanel.classList.add('invisible');
   });
   hardBtn.addEventListener('click', () => {
+    currentGame.difficulty = 'hard';
     currentGame.positivePoints = 5;
     currentGame.negativePoints = 5;
     SPEED_BALL = SENSORS_LIMIT / 4;
@@ -228,6 +238,10 @@ function win() {
     pointSum === currentGame.positivePoints
   ) {
     pauseTime();
+    gameEndTimes.push({
+      time: elapsedTime,
+      difficulty: currentGame.difficulty,
+    });
     winPanel.classList.remove('invisible');
     isGameStopped = true;
     ball.style.top = `${57}px`;
@@ -242,3 +256,9 @@ newGameBtn.addEventListener('click', () => {
   startNewGame();
   winPanel.classList.add('invisible');
 });
+
+trophy.addEventListener('click', () => {
+  leaderboardEasy.click();
+});
+
+

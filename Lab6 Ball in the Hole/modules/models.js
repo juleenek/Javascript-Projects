@@ -3,6 +3,7 @@ export const SENSORS_LIMIT = 25;
 const currentGame = {
   positivePoints: 0,
   negativePoints: 0,
+  difficulty: "",
   points: 0,
   isPlaying: false
 };
