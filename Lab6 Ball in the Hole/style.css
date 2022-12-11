@@ -1,6 +1,6 @@
 @font-face {
   font-family: 'Electrolize';
-  src: url('./fonts/Electrolize-Regular.ttf');
+  src: url('./assets/fonts/Electrolize-Regular.ttf');
 }
 
 body {
@@ -170,6 +170,27 @@ button {
   text-decoration: none;
 }
 
-.lvl-btn:hover {
-  text-shadow: 0 0 0.8vw #fff7f7
+button:hover {
+  text-shadow: 0 0 0.8vw #fff7f7;
 }
+
+.time-title {
+  width: 130px;
+  text-align: left;
+  padding: 0 !important;
+}
+
+.trophy {
+  width: 20px;
+}
+
+.trophy:hover {
+  width: 22px;
+}
+
+.points {
+  text-align: center;
+  padding: 0 0 0 7px !important;
+  width: 130px;
+}
+

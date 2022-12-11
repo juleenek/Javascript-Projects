@@ -9,6 +9,14 @@ import {
 
 import { getRandomX, getRandomY } from './modules/random.js';
 
+import {
+  updateTime,
+  startTime,
+  pauseTime,
+  resetTime,
+  gameEndTimes,
+} from './modules/watch.js';
+
 export const MAX_POSITION_X = 328;
 export const MAX_POSITION_Y = 580;
 let SPEED_BALL = 0;
@@ -181,6 +189,8 @@ function newGame() {
   positivePointsDOM = [];
   negativePointsDOM = [];
 
+  startTime();
+
   pointsBox.replaceChildren();
 
   window.addEventListener('deviceorientation', handleOrientation);
@@ -217,6 +227,7 @@ function win() {
     ballPositionY < 80 &&
     pointSum === currentGame.positivePoints
   ) {
+    pauseTime();
     winPanel.classList.remove('invisible');
     isGameStopped = true;
     ball.style.top = `${57}px`;
@@ -226,6 +237,7 @@ function win() {
 
 startNewGame();
 newGameBtn.addEventListener('click', () => {
+  resetTime();
   isLevelChoosen = false;
   startNewGame();
   winPanel.classList.add('invisible');
