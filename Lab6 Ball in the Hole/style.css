@@ -198,7 +198,7 @@ button:hover {
   z-index: 100;
   border: 2px solid #ffffff;
   position: absolute;
-  top: 280px;
+  top: 20vw;
   width: 410px;
   height: 520px;
   background-color: #000000;
