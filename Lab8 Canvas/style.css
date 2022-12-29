@@ -1,23 +1,39 @@
 .values {
   display: flex;
+  flex-direction: column;
+  justify-content: center;
+  width: 370px;
+  position: absolute;
+  background-color: #ffffff;
+  color: black;
+  top: 0;
+  left: 0;
+  height: 90px;
   gap: 20px;
-  padding: 10px 0 0 0;
+}
+
+.value-box {
+  display: flex;
+}
+
+.value-box h4 {
+  width: 150px;
+  margin: 0;
+  padding-left: 30px;
+}
+.value-box input {
+  height: 20px;
 }
 
 body {
+  margin: 0;
+  height: 100vh;
+  width: 100vw;
   background-color: #070707;
   color: #ffffff;
 }
 
-.container {
-  width: 100%;
-  height: 90vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-}
-
 canvas {
-  border: 1px solid #ffffff;
+
+  display: block;
 }

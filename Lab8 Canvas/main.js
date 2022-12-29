@@ -1,17 +1,23 @@
 'use strict';
 
-const canvas = document.querySelector('.canvas');
+const canvas = document.querySelector('#canvas');
+
+canvas.height = window.innerHeight - 1;
+canvas.width = window.innerWidth - 1;
+
+const CANVAS_WIDTH = canvas.width;
+const CANVAS_HEIGHT = canvas.height;
+
 const ctx = canvas.getContext('2d');
 
-const CANVAS_SIZE = 700;
 const colors = ['#c7c7c7', '#ffffff', '#7a7a7a', '#505050', '#a6a6a6', '#c8c8c8', '#393939'];
 
 const dotsNumInput = document.querySelector('.dots-number');
 const speedNumInput = document.querySelector('.speed');
-let dotsNum;
-let speedNum;
 
-ctx.rect(0, 0, CANVAS_SIZE, CANVAS_SIZE);
+let dotsNum, speedNum;
+
+ctx.rect(0, 0, CANVAS_WIDTH, CANVAS_HEIGHT);
 ctx.stroke();
 
 dotsNumInput.addEventListener('change', () => {
@@ -39,7 +45,7 @@ function drawDot(dot) {
   ctx.beginPath();
   ctx.arc(dot.x, dot.y, dot.size, 0, 2 * Math.PI);
   ctx.shadowColor = `${dot.color}`;
-  ctx.shadowBlur = 15;
+  ctx.shadowBlur = 5;
   ctx.fillStyle = `${dot.color}`;
   ctx.fill();
 }
@@ -49,15 +55,15 @@ function getRandomDotSize() {
 }
 
 function getRandomDotXPosition(size) {
-  return Math.random() * (CANVAS_SIZE - size - size) + size;
+  return Math.random() * (CANVAS_WIDTH - size) + size;
 }
 
 function getRandomDotYPosition(size) {
-  return Math.random() * (CANVAS_SIZE - 100 - size - size) + size;
+  return Math.random() * (CANVAS_HEIGHT - size) + size;
 }
 
 dotsNumInput.addEventListener('change', () => {
-  ctx.clearRect(0, 0, CANVAS_SIZE, CANVAS_SIZE);
+  ctx.clearRect(0, 0, CANVAS_WIDTH, CANVAS_HEIGHT);
   for (let index = 0; index < dotsNum; index++) {
     drawDot({ size: getRandomDotSize(), speed: 1, color: `${colors[Math.floor(Math.random()*colors.length)]}` });
   }
