@@ -1,4 +1,4 @@
-import { ctx } from './main.js';
+import { ctx, dots } from './main.js';
 import { random } from './helpers.js';
 
 const colors = [
@@ -20,8 +20,14 @@ export class Dot {
     this.y = random(1, Math.round(canvas.height) - this.size);
     this.velocity = velocity;
     this.color = `${colors[Math.floor(Math.random() * colors.length)]}`;
-    this.moveX = random(-this.maxSize * this.velocity, this.maxSize * this.velocity);
-    this.moveY = random(-this.maxSize * this.velocity, this.maxSize * this.velocity);
+    this.moveX = random(
+      -this.maxSize * this.velocity,
+      this.maxSize * this.velocity
+    );
+    this.moveY = random(
+      -this.maxSize * this.velocity,
+      this.maxSize * this.velocity
+    );
   }
 
   draw() {
@@ -33,18 +39,35 @@ export class Dot {
     ctx.fill();
   }
 
+  drawLine(inputDistance) {
+    for (const dot of dots) {
+      let distance =
+        Math.hypot(this.x - dot.x, this.y - dot.y) -
+        this.size / 2 -
+        dot.size / 2;
+
+      if (distance < inputDistance) {
+        ctx.beginPath();
+        ctx.strokeStyle = `${this.color}`;
+        ctx.moveTo(this.x, this.y);
+        ctx.lineTo(dot.x, dot.y);
+        ctx.stroke();
+      }
+    }
+  }
+
   move() {
     if (this.x + this.size >= canvas.width) {
-      this.moveX = -this.maxSize * this.velocity ;
+      this.moveX = -this.maxSize * this.velocity;
     }
     if (this.x - this.size <= 0) {
-      this.moveX = this.maxSize * this.velocity ;
+      this.moveX = this.maxSize * this.velocity;
     }
     if (this.y + this.size >= canvas.height) {
-      this.moveY = -this.maxSize * this.velocity ;
+      this.moveY = -this.maxSize * this.velocity;
     }
     if (this.y - this.size <= 0) {
-      this.moveY = this.maxSize * this.velocity ;
+      this.moveY = this.maxSize * this.velocity;
     }
     this.x += this.moveX;
     this.y += this.moveY;

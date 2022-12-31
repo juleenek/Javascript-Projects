@@ -1,7 +1,6 @@
 'use strict';
 
 import { Dot } from './dot.js';
-import { isEveryInputNotEmpty } from './helpers.js';
 
 const canvas = document.querySelector('#canvas');
 
@@ -9,6 +8,7 @@ canvas.height = window.innerHeight - 1;
 canvas.width = window.innerWidth - 1;
 
 export const ctx = canvas.getContext('2d');
+export let dots = [];
 
 const dotsNumInput = document.querySelector('.dots-number');
 const speedNumInput = document.querySelector('.speed');
@@ -16,9 +16,9 @@ const distanceNumInput = document.querySelector('.distance');
 
 const startBtn = document.querySelector('.start-btn');
 const resetBtn = document.querySelector('.reset-btn');
+const clearBtn = document.querySelector('.clear-btn');
 
 let dotsNum, speedNum;
-let dots = [];
 let isRunning = false;
 
 ctx.rect(0, 0, canvas.width, canvas.height);
@@ -33,12 +33,18 @@ startBtn.addEventListener('click', () => {
 });
 
 resetBtn.addEventListener('click', () => {
-  speedNumInput.value = '';
-  dotsNumInput.value = '';
-  distanceNumInput.value = '';
+  // speedNumInput.value = '';
+  // dotsNumInput.value = '';
+  // distanceNumInput.value = '';
   addInputsEvents();
   removeInputsEvents();
   reset();
+});
+
+clearBtn.addEventListener('click', () => {
+  speedNumInput.value = '';
+  dotsNumInput.value = '';
+  distanceNumInput.value = '';
 });
 
 function addInputsEvents() {
@@ -71,6 +77,7 @@ function animate() {
   ctx.clearRect(0, 0, canvas.width, canvas.height);
   dots.forEach((dot) => {
     dot.move();
+    dot.drawLine(distanceNumInput.value);
     dot.draw();
   });
   requestAnimationFrame(animate);
