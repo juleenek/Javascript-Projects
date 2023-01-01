@@ -1,6 +1,7 @@
 'use strict';
 
 import { Dot } from './dot.js';
+import { Direction } from './helpers.js';
 
 const canvas = document.querySelector('#canvas');
 
@@ -33,9 +34,6 @@ startBtn.addEventListener('click', () => {
 });
 
 resetBtn.addEventListener('click', () => {
-  // speedNumInput.value = '';
-  // dotsNumInput.value = '';
-  // distanceNumInput.value = '';
   addInputsEvents();
   removeInputsEvents();
   reset();
@@ -84,3 +82,46 @@ function animate() {
 }
 
 addInputsEvents();
+
+function dotOnClick() {}
+
+const dotsOnMouseMove = (e) => {
+  for (const dot of dots) {
+    if (
+      e.clientX > dot.x &&
+      e.clientX < dot.x + 20 &&
+      e.clientY > dot.y &&
+      e.clientY < dot.y + 20
+    ) {
+      dot.move(Direction.ToLeft, Direction.ToDown, 1);
+    }
+    if (
+      e.clientX > dot.x &&
+      e.clientX < dot.x + 20 &&
+      e.clientY < dot.y &&
+      e.clientY > dot.y - 20
+    ) {
+      dot.move(Direction.ToLeft, Direction.ToUp, 1);
+    }
+    if (
+      e.clientX < dot.x &&
+      e.clientX > dot.x - 20 &&
+      e.clientY > dot.y &&
+      e.clientY < dot.y + 20
+    ) {
+      dot.move(Direction.ToRight, Direction.ToDown, 1);
+    }
+    if (
+      e.clientX < dot.x &&
+      e.clientX > dot.x - 20 &&
+      e.clientY < dot.y &&
+      e.clientY > dot.y - 20
+    ) {
+      dot.move(Direction.ToRight, Direction.ToUp, 1);
+    }
+  }
+}
+
+canvas.addEventListener('click', dotOnClick);
+
+canvas.addEventListener('mousemove', dotsOnMouseMove);

@@ -1,5 +1,5 @@
 import { ctx, dots } from './main.js';
-import { random } from './helpers.js';
+import { random, Direction } from './helpers.js';
 
 const colors = [
   '#c7c7c7',
@@ -56,18 +56,21 @@ export class Dot {
     }
   }
 
-  move() {
-    if (this.x + this.size >= canvas.width) {
-      this.moveX = -this.maxSize * this.velocity;
+  move(directionX, directionY, increase = 0) {
+    if (this.x + this.size >= canvas.width || directionX === Direction.ToLeft) {
+      this.moveX = -this.maxSize * this.velocity - increase;
     }
-    if (this.x - this.size <= 0) {
-      this.moveX = this.maxSize * this.velocity;
+    if (this.x - this.size <= 0 || directionX === Direction.ToRight) {
+      this.moveX = this.maxSize * this.velocity + increase;
     }
-    if (this.y + this.size >= canvas.height) {
-      this.moveY = -this.maxSize * this.velocity;
+    if (
+      this.y + this.size >= canvas.height ||
+      directionY === Direction.ToDown
+    ) {
+      this.moveY = -this.maxSize * this.velocity - increase;
     }
-    if (this.y - this.size <= 0) {
-      this.moveY = this.maxSize * this.velocity;
+    if (this.y - this.size <= 0 || directionY === Direction.ToUp) {
+      this.moveY = this.maxSize * this.velocity + increase;
     }
     this.x += this.moveX;
     this.y += this.moveY;
