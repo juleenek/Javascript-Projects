@@ -6,6 +6,9 @@ import { canvasOnClick, dotsOnMouseMove } from './eventFunc.js';
 const sliderSpeed = document.getElementById('slider-speed');
 const sliderDistance = document.getElementById('slide-distance');
 
+const valueSpeed = document.querySelector('.range-value-speed');
+const valueDistance = document.querySelector('.range-value-distance');
+
 const canvas = document.querySelector('#canvas');
 
 canvas.height = window.innerHeight - 1;
@@ -69,6 +72,7 @@ startBtn.addEventListener('click', () => {
   if (!isRunning) {
     addInputsVariables();
     animate();
+    startBtn.classList.add('locked-start');
     isRunning = true;
   }
 });
@@ -77,6 +81,7 @@ resetBtn.addEventListener('click', () => {
   addInputsVariables();
   emptyInputsVariables();
   reset();
+  startBtn.classList.remove('locked-start');
 });
 
 clearBtn.addEventListener('click', () => {
@@ -89,3 +94,13 @@ canvas.addEventListener('click', canvasOnClick);
 canvas.addEventListener('mousemove', dotsOnMouseMove);
 
 addInputsVariables();
+
+sliderSpeed.addEventListener("input", (event) => {
+  valueSpeed.textContent = (Math.round(event.target.value * 100) / 100).toFixed(2)
+})
+sliderDistance.addEventListener("input", (event) => {
+  valueDistance.textContent = (Math.round(event.target.value * 100) / 100).toFixed(0)
+})
+
+valueSpeed.textContent = (Math.round(sliderSpeed.value * 100) / 100).toFixed(2)
+valueDistance.textContent = (Math.round(sliderDistance.value * 100) / 100).toFixed(0)

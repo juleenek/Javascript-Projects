@@ -20,12 +20,11 @@ body {
   display: flex;
   flex-direction: column;
   justify-content: center;
-  align-items: center;
   width: 500px;
   position: absolute;
   background-color: #ffffff;
   color: black;
-  bottom: -29%;
+  bottom: -30%;
   transition: bottom 0.5s ease-out 100ms;
   padding: 50px 0 15px 0;
   gap: 20px;
@@ -39,8 +38,8 @@ body {
 }
 
 .value-box {
-  display: flex;
-  padding-top: 5px;
+  display: flex;;
+  padding: 5px 60px 0 60px;
   align-items: center;
 }
 
@@ -52,7 +51,6 @@ body {
 .dots-number {
   height: 20px;
   width: 120px;
-  padding-left: 10px;
   border: none;
   border-bottom: 1.5px solid #b8b8b8;
   background-color: transparent;
@@ -77,12 +75,19 @@ canvas {
 .btns-box {
   display: flex;
   justify-content: space-between;
-  padding: 30px 0;
+  padding: 30px 60px 25px 70px;
   width: 60%;
 }
 
 button {
   font-family: 'Lexend';
+  background-color: transparent;
+  -webkit-box-shadow: none;
+  -moz-box-shadow: none;
+  box-shadow: none;
+  border-color: #b8b8b8;
+  font-family: 'Lexend';
+  padding: 5px 15px;
 }
 
 .container {
@@ -109,4 +114,15 @@ button {
   to {
     color: #a5a5a528;
   }
+}
+
+.locked-start {
+  background-color: #9e9e9e;
+  color: #0e0e0e;
+}
+
+.range-value {
+  font-size: 13px;
+  width: 30px;
+  padding-left: 10px;
 }
