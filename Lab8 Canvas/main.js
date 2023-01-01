@@ -1,7 +1,7 @@
 'use strict';
 
 import { Dot } from './dot.js';
-import { Direction } from './helpers.js';
+import { canvasOnClick, dotsOnMouseMove } from './eventFunc.js';
 
 const canvas = document.querySelector('#canvas');
 
@@ -10,6 +10,8 @@ canvas.width = window.innerWidth - 1;
 
 export const ctx = canvas.getContext('2d');
 export let dots = [];
+export let dotsNum, speedNum;
+let isRunning = false;
 
 const dotsNumInput = document.querySelector('.dots-number');
 const speedNumInput = document.querySelector('.speed');
@@ -19,33 +21,10 @@ const startBtn = document.querySelector('.start-btn');
 const resetBtn = document.querySelector('.reset-btn');
 const clearBtn = document.querySelector('.clear-btn');
 
-let dotsNum, speedNum;
-let isRunning = false;
-
 ctx.rect(0, 0, canvas.width, canvas.height);
 ctx.stroke();
 
-startBtn.addEventListener('click', () => {
-  if (!isRunning) {
-    addInputsEvents();
-    animate();
-    isRunning = true;
-  }
-});
-
-resetBtn.addEventListener('click', () => {
-  addInputsEvents();
-  removeInputsEvents();
-  reset();
-});
-
-clearBtn.addEventListener('click', () => {
-  speedNumInput.value = '';
-  dotsNumInput.value = '';
-  distanceNumInput.value = '';
-});
-
-const addInputsEvents = () => {
+const addInputsVariables = () => {
   speedNum = parseFloat(speedNumInput.value);
   if (isNaN(speedNum)) speedNum = 0;
 
@@ -56,20 +35,20 @@ const addInputsEvents = () => {
     const dot = new Dot(speedNum);
     dots.push(dot);
   }
-}
+};
 
 const reset = () => {
-  removeInputsEvents();
+  emptyInputsVariables();
   dots = [];
   isRunning = false;
   ctx.clearRect(0, 0, canvas.width, canvas.height);
   cancelAnimationFrame(animate);
-}
+};
 
-const removeInputsEvents = () => {
+const emptyInputsVariables = () => {
   speedNum = 0;
   dotsNum = 0;
-}
+};
 
 const animate = () => {
   ctx.clearRect(0, 0, canvas.width, canvas.height);
@@ -79,52 +58,29 @@ const animate = () => {
     dot.draw();
   });
   requestAnimationFrame(animate);
-}
-
-const dotOnClick = () => {
-  for (let i = 0; i < 2; i++) {
-    const dot = new Dot(speedNum);
-    dots.push(dot);
-  }
-}
-
-const dotsOnMouseMove = (e) => {
-  for (const dot of dots) {
-    if (
-      e.clientX > dot.x &&
-      e.clientX < dot.x + 20 &&
-      e.clientY > dot.y &&
-      e.clientY < dot.y + 20
-    ) {
-      dot.move(Direction.ToLeft, Direction.ToDown, 1);
-    }
-    if (
-      e.clientX > dot.x &&
-      e.clientX < dot.x + 20 &&
-      e.clientY < dot.y &&
-      e.clientY > dot.y - 20
-    ) {
-      dot.move(Direction.ToLeft, Direction.ToUp, 1);
-    }
-    if (
-      e.clientX < dot.x &&
-      e.clientX > dot.x - 20 &&
-      e.clientY > dot.y &&
-      e.clientY < dot.y + 20
-    ) {
-      dot.move(Direction.ToRight, Direction.ToDown, 1);
-    }
-    if (
-      e.clientX < dot.x &&
-      e.clientX > dot.x - 20 &&
-      e.clientY < dot.y &&
-      e.clientY > dot.y - 20
-    ) {
-      dot.move(Direction.ToRight, Direction.ToUp, 1);
-    }
-  }
 };
 
-canvas.addEventListener('click', dotOnClick);
+startBtn.addEventListener('click', () => {
+  if (!isRunning) {
+    addInputsVariables();
+    animate();
+    isRunning = true;
+  }
+});
+
+resetBtn.addEventListener('click', () => {
+  addInputsVariables();
+  emptyInputsVariables();
+  reset();
+});
+
+clearBtn.addEventListener('click', () => {
+  speedNumInput.value = '';
+  dotsNumInput.value = '';
+  distanceNumInput.value = '';
+});
+
+canvas.addEventListener('click', canvasOnClick);
 canvas.addEventListener('mousemove', dotsOnMouseMove);
-addInputsEvents();
+
+addInputsVariables();
