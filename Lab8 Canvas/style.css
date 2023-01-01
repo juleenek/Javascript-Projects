@@ -1,16 +1,41 @@
+@font-face {
+  font-family: 'Lexend';
+  src: url('./assets/Lexend-VariableFont_wght.ttf');
+}
+
+@font-face {
+  font-family: 'Montserrat';
+  src: url('./assets/Montserrat-Thin.ttf');
+}
+
+html,
+body {
+  margin: 0;
+  height: 100%;
+  overflow: hidden;
+  font-family: 'Lexend';
+}
+
 .values {
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  width: 370px;
+  width: 500px;
   position: absolute;
   background-color: #ffffff;
   color: black;
-  top: 0;
-  left: 0;
-  padding: 15px 0;
+  bottom: -25%;
+  transition: bottom 0.5s ease-out 100ms;
+  padding: 50px 0 15px 0;
   gap: 20px;
+  -webkit-box-shadow: inset -0px 0px 46px -25px rgba(66, 68, 90, 1);
+  -moz-box-shadow: inset -0px 0px 46px -25px rgba(66, 68, 90, 1);
+  box-shadow: inset -0px 0px 46px -25px rgba(66, 68, 90, 1);
+}
+
+.values:hover {
+  bottom: 0;
 }
 
 .value-box {
@@ -40,6 +65,36 @@ canvas {
 .btns-box {
   display: flex;
   justify-content: space-between;
-  padding: 10px 0;
-  width: 70%;
+  padding: 30px 0;
+  width: 60%;
+}
+
+button {
+  font-family: 'Lexend';
+}
+
+.container {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+}
+
+.hover-title {
+  position: absolute;
+  letter-spacing: 1px;
+  bottom: 60px;
+  margin: 0;
+  font-family: 'Montserrat';
+  font-size: 20px;
+  animation: hoverColor 2.5s infinite alternate;
+}
+
+@keyframes hoverColor {
+  from {
+    color: #c8c8c8c0;
+  }
+
+  to {
+    color: #a5a5a528;
+  }
 }

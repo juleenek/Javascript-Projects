@@ -10,7 +10,7 @@ canvas.width = window.innerWidth - 1;
 
 export const ctx = canvas.getContext('2d');
 export let dots = [];
-export let dotsNum, speedNum;
+export let dotsNum, speedNum, distanceNum;
 let isRunning = false;
 
 const dotsNumInput = document.querySelector('.dots-number');
@@ -30,6 +30,9 @@ const addInputsVariables = () => {
 
   dotsNum = parseInt(dotsNumInput.value);
   if (isNaN(dotsNum)) dotsNum = 0;
+
+  distanceNum = parseInt(distanceNumInput.value);
+  if (isNaN(distanceNum)) distanceNum = 0;
 
   for (let index = 0; index < dotsNum; index++) {
     const dot = new Dot(speedNum);
@@ -54,7 +57,7 @@ const animate = () => {
   ctx.clearRect(0, 0, canvas.width, canvas.height);
   dots.forEach((dot) => {
     dot.move();
-    dot.drawLine(distanceNumInput.value);
+    dot.drawLine(distanceNum);
     dot.draw();
   });
   requestAnimationFrame(animate);

@@ -110,7 +110,7 @@ function moveX() {
     }
     if (x - SENSORS_LIMIT > 0 && x - SENSORS_LIMIT <= SENSORS_LIMIT) {
       if (game.isBallNextToWallX === false)
-        ball_X += (x - SENSORS_LIMIT) / (SENSORS_LIMIT - 5);
+        balarrowl_X += (x - SENSORS_LIMIT) / (SENSORS_LIMIT - 5);
     }
   }
   if (ballPositionHorizontal <= 0) {
