@@ -25,7 +25,7 @@ body {
   position: absolute;
   background-color: #ffffff;
   color: black;
-  bottom: -25%;
+  bottom: -29%;
   transition: bottom 0.5s ease-out 100ms;
   padding: 50px 0 15px 0;
   gap: 20px;
@@ -40,14 +40,26 @@ body {
 
 .value-box {
   display: flex;
+  padding-top: 5px;
+  align-items: center;
 }
 
 .value-box h4 {
   width: 150px;
   margin: 0;
 }
-.value-box input {
+
+.dots-number {
   height: 20px;
+  width: 120px;
+  padding-left: 10px;
+  border: none;
+  border-bottom: 1.5px solid #b8b8b8;
+  background-color: transparent;
+  -webkit-box-shadow: none;
+  -moz-box-shadow: none;
+  box-shadow: none;
+  font-family: 'Lexend';
 }
 
 body {

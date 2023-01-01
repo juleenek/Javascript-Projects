@@ -5,6 +5,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="stylesheet" href="style.css" />
+    <link rel="stylesheet" href="range.css" />
     <title>Canvas Project</title>
   </head>
   <body>
@@ -14,17 +15,31 @@
       <div class="values">
         <div class="value-box">
           <label class="value-title" for="speed"><h4>Speed:</h4></label>
-          <input name="speed" class="speed" />
+          <input
+            id="slider-speed"
+            type="range"
+            min="0.02"
+            max="0.6"
+            value="0.02"
+            step="any"
+          />
         </div>
         <div class="value-box">
           <label class="value-title" for="dots-number"
             ><h4>Number of balls:</h4></label
           >
-          <input name="dots-number" class="dots-number" />
+          <input name="dots-number" value="10" class="dots-number" />
         </div>
         <div class="value-box">
           <label class="value-title" for="distance"><h4>Distance:</h4></label>
-          <input name="distance" class="distance" />
+          <input
+            id="slide-distance"
+            type="range"
+            min="20"
+            max="200"
+            value="0"
+            step="any"
+          />
         </div>
         <div class="btns-box">
           <button class="start-btn btn">Start</button

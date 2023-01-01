@@ -3,6 +3,9 @@
 import { Dot } from './dot.js';
 import { canvasOnClick, dotsOnMouseMove } from './eventFunc.js';
 
+const sliderSpeed = document.getElementById('slider-speed');
+const sliderDistance = document.getElementById('slide-distance');
+
 const canvas = document.querySelector('#canvas');
 
 canvas.height = window.innerHeight - 1;
@@ -14,8 +17,6 @@ export let dotsNum, speedNum, distanceNum;
 let isRunning = false;
 
 const dotsNumInput = document.querySelector('.dots-number');
-const speedNumInput = document.querySelector('.speed');
-const distanceNumInput = document.querySelector('.distance');
 
 const startBtn = document.querySelector('.start-btn');
 const resetBtn = document.querySelector('.reset-btn');
@@ -25,13 +26,13 @@ ctx.rect(0, 0, canvas.width, canvas.height);
 ctx.stroke();
 
 const addInputsVariables = () => {
-  speedNum = parseFloat(speedNumInput.value);
+  speedNum = sliderSpeed.value;
   if (isNaN(speedNum)) speedNum = 0;
 
   dotsNum = parseInt(dotsNumInput.value);
   if (isNaN(dotsNum)) dotsNum = 0;
 
-  distanceNum = parseInt(distanceNumInput.value);
+  distanceNum = sliderDistance.value;
   if (isNaN(distanceNum)) distanceNum = 0;
 
   for (let index = 0; index < dotsNum; index++) {
@@ -49,7 +50,8 @@ const reset = () => {
 };
 
 const emptyInputsVariables = () => {
-  speedNum = 0;
+  sliderSpeed.value = 0;
+  sliderDistance.value = 0;
   dotsNum = 0;
 };
 
@@ -78,9 +80,9 @@ resetBtn.addEventListener('click', () => {
 });
 
 clearBtn.addEventListener('click', () => {
-  speedNumInput.value = '';
   dotsNumInput.value = '';
-  distanceNumInput.value = '';
+  sliderSpeed.value = 0;
+  sliderDistance.value = 0;
 });
 
 canvas.addEventListener('click', canvasOnClick);
