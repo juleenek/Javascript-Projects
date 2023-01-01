@@ -45,7 +45,7 @@ clearBtn.addEventListener('click', () => {
   distanceNumInput.value = '';
 });
 
-function addInputsEvents() {
+const addInputsEvents = () => {
   speedNum = parseFloat(speedNumInput.value);
   if (isNaN(speedNum)) speedNum = 0;
 
@@ -58,7 +58,7 @@ function addInputsEvents() {
   }
 }
 
-function reset() {
+const reset = () => {
   removeInputsEvents();
   dots = [];
   isRunning = false;
@@ -66,12 +66,12 @@ function reset() {
   cancelAnimationFrame(animate);
 }
 
-function removeInputsEvents() {
+const removeInputsEvents = () => {
   speedNum = 0;
   dotsNum = 0;
 }
 
-function animate() {
+const animate = () => {
   ctx.clearRect(0, 0, canvas.width, canvas.height);
   dots.forEach((dot) => {
     dot.move();
@@ -81,9 +81,12 @@ function animate() {
   requestAnimationFrame(animate);
 }
 
-addInputsEvents();
-
-function dotOnClick() {}
+const dotOnClick = () => {
+  for (let i = 0; i < 2; i++) {
+    const dot = new Dot(speedNum);
+    dots.push(dot);
+  }
+}
 
 const dotsOnMouseMove = (e) => {
   for (const dot of dots) {
@@ -120,8 +123,8 @@ const dotsOnMouseMove = (e) => {
       dot.move(Direction.ToRight, Direction.ToUp, 1);
     }
   }
-}
+};
 
 canvas.addEventListener('click', dotOnClick);
-
 canvas.addEventListener('mousemove', dotsOnMouseMove);
+addInputsEvents();
