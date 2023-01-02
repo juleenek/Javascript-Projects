@@ -21,9 +21,7 @@ body::before {
   left: 0;
   width: 100vw;
   height: 100vh;
-  opacity: 0.1;
   z-index: -1;
-  background: url('asstes/numbers.gif');
 }
 .invisibleElement {
   display: none;
