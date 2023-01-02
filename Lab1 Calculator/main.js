@@ -103,7 +103,6 @@ function addValuesToArray() {
     if (parseInt(value)) {
       inputValuesArray.push(value);
     } else {
-      
     }
   }
 }
@@ -132,8 +131,8 @@ function getResults() {
 }
 getResults();
 inputArray.forEach((element) => {
-  element.children[1].addEventListener('change', function () {
+  element.children[1].addEventListener('input', function () {
     getResults();
-    display();
   });
+  display();
 });
