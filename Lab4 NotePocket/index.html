@@ -9,13 +9,41 @@
   </head>
   <body>
     <div class="container">
-      <div class="new_note">
-        <input class="title" type="text" placeholder="Title" />
-        <input type="text" placeholder="Create note...">
-        
+      <div class="main-note">
+        <div class="main-note-top">
+          <input class="title" type="text" placeholder="Title" />
+          <img class="pin" src="./assets/img/unclicked_pin.png" alt="pin" />
+        </div>
+        <textarea
+          name=""
+          class="note-content"
+          cols="30"
+          rows="10"
+          placeholder="Create note..."
+        ></textarea>
+        <div class="main-note-bottom">
+          <label for="">
+            <input type="radio" />
+            Done
+          </label>
+          <label class="tags-label" for=""
+            >Tags:
+            <input class="tags-input" type="text" placeholder="Your tags" />
+          </label>
+        </div>
+        <div class="colors-box">
+          <div class="color"></div>
+          <div class="color"></div>
+          <div class="color"></div>
+          <div class="color"></div>
+          <div class="color"></div>
+          <div class="color"></div>
+          <div class="color"></div>
+          <div class="color"></div>
+        </div>
       </div>
       <div class="notes_container"></div>
     </div>
-    <script src="main.js" type="text/javascript"></script>
+    <script src="main.js" type="module"></script>
   </body>
 </html>

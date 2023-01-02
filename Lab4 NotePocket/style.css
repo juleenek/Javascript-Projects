@@ -1,0 +1,65 @@
+@font-face {
+  font-family: 'Manrope';
+  font-weight: 100;
+  src: url('./assets/Manrope-Light.ttf');
+}
+
+.main-note {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  width: 350px;
+  height: 250px;
+  padding: 20px 20px 20px 20px;
+  font-family: 'Manrope';
+  border-radius: 20px;
+  -webkit-box-shadow: 5px 5px 19px -12px rgba(66, 68, 90, 1);
+  -moz-box-shadow: 5px 5px 19px -12px rgba(66, 68, 90, 1);
+  box-shadow: 5px 5px 19px -12px rgba(66, 68, 90, 1);
+}
+
+.main-note-top {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding-bottom: 15px;
+}
+
+.main-note-bottom {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 15px 0 25px 0;
+}
+
+.colors-box {
+  display: flex;
+  justify-content: space-between;
+  padding: 0 30px;
+}
+
+.color {
+  width: 15px;
+  height: 15px;
+  border-radius: 50%;
+  background-color: rgb(75, 160, 160);
+}
+
+textarea, input, textarea::placeholder, input::placeholder  {
+  resize: none;
+  font-family: 'Manrope';
+  font-size: 12px;
+  padding: 5px 5px;
+}
+
+textarea, textarea::placeholder {
+padding: 5px 5px;
+}
+
+.tags-input {
+  margin-left: 10px;
+}
+
+.pin {
+  width: 25px;
+}
