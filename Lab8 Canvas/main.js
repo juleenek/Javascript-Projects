@@ -50,6 +50,12 @@ const reset = () => {
   isRunning = false;
   ctx.clearRect(0, 0, canvas.width, canvas.height);
   cancelAnimationFrame(animate);
+  valueSpeed.textContent = (Math.round(sliderSpeed.value * 100) / 100).toFixed(
+    2
+  );
+  valueDistance.textContent = (
+    Math.round(sliderDistance.value * 100) / 100
+  ).toFixed(0);
 };
 
 const emptyInputsVariables = () => {
@@ -95,12 +101,18 @@ canvas.addEventListener('mousemove', dotsOnMouseMove);
 
 addInputsVariables();
 
-sliderSpeed.addEventListener("input", (event) => {
-  valueSpeed.textContent = (Math.round(event.target.value * 100) / 100).toFixed(2)
-})
-sliderDistance.addEventListener("input", (event) => {
-  valueDistance.textContent = (Math.round(event.target.value * 100) / 100).toFixed(0)
-})
+sliderSpeed.addEventListener('input', (event) => {
+  valueSpeed.textContent = (Math.round(event.target.value * 100) / 100).toFixed(
+    2
+  );
+});
+sliderDistance.addEventListener('input', (event) => {
+  valueDistance.textContent = (
+    Math.round(event.target.value * 100) / 100
+  ).toFixed(0);
+});
 
-valueSpeed.textContent = (Math.round(sliderSpeed.value * 100) / 100).toFixed(2)
-valueDistance.textContent = (Math.round(sliderDistance.value * 100) / 100).toFixed(0)
+valueSpeed.textContent = (Math.round(sliderSpeed.value * 100) / 100).toFixed(2);
+valueDistance.textContent = (
+  Math.round(sliderDistance.value * 100) / 100
+).toFixed(0);
