@@ -4,6 +4,19 @@
   src: url('./assets/Manrope-Light.ttf');
 }
 
+body {
+  display: flex;
+  justify-content: center;
+}
+
+.container {
+  display: flex;
+  flex-wrap: wrap;
+
+  width: 1250px;
+  align-items: center;
+}
+
 .main-note,
 .note {
   display: flex;
@@ -12,16 +25,20 @@
   width: 350px;
   height: 250px;
   padding: 20px 20px 20px 20px;
+  margin: 20px 10px;
   font-family: 'Manrope';
-  border-radius: 20px;
-  -webkit-box-shadow: 5px 5px 19px -12px rgba(66, 68, 90, 1);
-  -moz-box-shadow: 5px 5px 19px -12px rgba(66, 68, 90, 1);
-  box-shadow: 5px 5px 19px -12px rgba(66, 68, 90, 1);
+}
+
+.main-note {
+  width: 352px;
 }
 
 .note {
-  margin: 20px 0;
-  height: 100%;
+  height: 250px;
+  -webkit-box-shadow: none;
+  -moz-box-shadow: none;
+  box-shadow: none;
+  border: 1px solid #42445a31;
 }
 
 .main-note-top,
@@ -40,6 +57,10 @@
   padding: 15px 0 25px 0;
 }
 
+.note-bottom {
+  padding: 0;
+}
+
 .colors-box {
   display: flex;
   justify-content: space-between;
@@ -50,7 +71,10 @@
   width: 15px;
   height: 15px;
   border-radius: 50%;
-  background-color: rgb(75, 160, 160);
+}
+
+.color:hover {
+  border: 1px solid #ff0a0a;
 }
 
 textarea,
@@ -81,15 +105,58 @@ textarea::placeholder {
   width: 100%;
 }
 
-.pin {
+.edit-icon,
+.pin,
+.bin-icon,
+.checked-pin {
   width: 25px;
 }
 
-.edit-icon {
-  width: 25px;
+.img-box-bottom {
+  width: 100%;
+  display: flex;
+  justify-content: end;
+  gap: 15px;
+  padding: 10px 0 0 0;
 }
 
-.edit-icon:hover, .pin:hover {
+.edit-icon:hover,
+.pin:hover,
+.bin-icon:hover,
+.checked-pin:hover {
   -webkit-filter: drop-shadow(0px 0px 0px #000000);
   filter: drop-shadow(0px 0px 0px #000000);
+}
+
+button {
+  font-family: 'Manrope';
+  font-size: 12px;
+  background-color: transparent;
+  border: 1px solid #656565b3;
+  border-radius: 15px;
+  width: 70px;
+  height: 30px;
+  margin-right: 10px;
+  -webkit-box-shadow: inset 0px 0px 26px -26px rgba(66, 68, 90, 1);
+  -moz-box-shadow: inset 0px 0px 26px -26px rgba(66, 68, 90, 1);
+  box-shadow: inset 0px 0px 26px -26px rgba(66, 68, 90, 1);
+}
+
+button:hover {
+  border: 1px solid #424242;
+}
+
+.note-content {
+  width: 94% !important;
+  height: 150px;
+  overflow-wrap: break-word;
+  overflow-y: scroll;
+}
+
+.unvisible {
+  display: none;
+}
+
+.note-date {
+  font-size: 12px;
 }

@@ -11,11 +11,17 @@
     <div class="container">
       <div class="main-note">
         <div class="main-note-top">
-          <input class="title-input" type="text" placeholder="Title" />
+          <input
+            class="title-input"
+            type="text"
+            placeholder="Title"
+            maxlength="50"
+          />
         </div>
         <textarea
           name=""
           cols="30"
+          class="content-textarea"
           rows="10"
           placeholder="Create note..."
         ></textarea>
@@ -24,37 +30,33 @@
             >Tags:
             <input class="tags-input" type="text" placeholder="Your tags" />
           </label>
+          <button class="create-btn">Create</button>
         </div>
-        <div class="colors-box">
-          <div class="color"></div>
-          <div class="color"></div>
-          <div class="color"></div>
-          <div class="color"></div>
-          <div class="color"></div>
-          <div class="color"></div>
-          <div class="color"></div>
-          <div class="color"></div>
-        </div>
+        <div class="colors-box"></div>
       </div>
       <div class="note">
         <div class="note-top">
-          <h4 class="title-note">Note title</h4>
+          <h4 class="title-note"></h4>
+          <img class="checked-pin unvisible" src="./assets/img/clicked_pin.png" alt="pin" />
           <img class="pin" src="./assets/img/unclicked_pin.png" alt="pin" />
         </div>
-        <p class="note-content">
-          Lorem ipsum dolor sit amet. Qui aliquid magni ut iure quis ut totam
-          illum quo amet voluptatem. Ad voluptatem consequuntur et perspiciatis
-          delectus et modi eaque ad quibusdam sunt sit perspiciatis veniam!
-        </p>
+        <p class="note-content"></p>
         <div class="note-bottom">
           <label for="">
             <input type="radio" />
             Done
           </label>
-          <img src="./assets/img/edit_pencil.png" alt="Edit" class="edit-icon">
+          <p class="note-date"></p>
+        </div>
+        <div class="img-box-bottom">
+          <img
+            src="./assets/img/edit_pencil.png"
+            alt="Edit"
+            class="edit-icon"
+          />
+          <img class="bin-icon" src="./assets/img/bin.png" alt="bin" />
         </div>
       </div>
-      <div class="notes_container"></div>
     </div>
     <script src="main.js" type="module"></script>
   </body>
