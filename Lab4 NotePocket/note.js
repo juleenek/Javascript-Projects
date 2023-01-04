@@ -12,6 +12,7 @@ class Note {
     this.content = content;
     this.color = color;
     this.pin = false;
+    this.isDone = false;
     this.date = Date.now();
   }
 
@@ -19,9 +20,6 @@ class Note {
     localStorage.setItem(id, JSON.stringify(this));
     id++;
   }
-
-  edit() {}
-  delete() {}
 }
 
 const clearNotes = () => {
@@ -46,6 +44,7 @@ const createNoteDOM = (note) => {
   noteTitleDOM.textContent = `${note.title}`;
   noteContentDOM.innerHTML = `${note.content}`;
   noteDateDOM.innerHTML = `${today.toDateString()}`;
+  noteDOM.style.backgroundColor = `${note.color}`
 
   const pin = noteTopDOM.querySelector('.pin');
   const checkedPin = noteTopDOM.querySelector('.checked-pin');
