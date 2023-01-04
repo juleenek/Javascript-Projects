@@ -44,6 +44,30 @@ const createNoteDOM = (note) => {
   noteContentDOM.innerHTML = `${note.content}`;
   noteDateDOM.innerHTML = `${today.toDateString()}`;
 
+  const pin = noteTopDOM.querySelector('.pin');
+  const checkedPin = noteTopDOM.querySelector('.checked-pin');
+
+  if (!note.pin) {
+    checkedPin.classList.add('unvisible');
+  } else {
+    pin.classList.add('unvisible');
+  }
+
+  pin.addEventListener('click', () => {
+    pin.classList.toggle('unvisible');
+    checkedPin.classList.toggle('unvisible');
+    note.pin = true;
+    localStorage.setItem(note.id, JSON.stringify(note));
+    getAllNotes();
+  });
+  checkedPin.addEventListener('click', () => {
+    pin.classList.toggle('unvisible');
+    checkedPin.classList.toggle('unvisible');
+    note.pin = false;
+    localStorage.setItem(note.id, JSON.stringify(note));
+    getAllNotes();
+  });
+
   container.appendChild(noteDOM);
 };
 
@@ -55,7 +79,10 @@ const getAllNotes = () => {
     notesArray.push(JSON.parse(note));
   }
   for (const note of notesArray.sort((a, b) => b.id - a.id)) {
-    createNoteDOM(note);
+    if (note.pin === true) createNoteDOM(note);
+  }
+  for (const note of notesArray.sort((a, b) => b.id - a.id)) {
+    if (note.pin !== true) createNoteDOM(note);
   }
 };
 
