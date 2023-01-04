@@ -1,3 +1,5 @@
+import { pinEvents, binEvents } from './noteEvents.js';
+
 let id = 1;
 const noteTemplate = document.querySelector('.note');
 const container = document.querySelector('.container');
@@ -35,6 +37,7 @@ const createNoteDOM = (note) => {
 
   const noteTopDOM = noteDOM.querySelector('.note-top');
   const noteBottomDOM = noteDOM.querySelector('.note-bottom');
+  const imgBoxBottomDOM = noteDOM.querySelector('.img-box-bottom');
 
   const noteTitleDOM = noteTopDOM.querySelector('.title-note');
   const noteContentDOM = noteDOM.querySelector('.note-content');
@@ -46,27 +49,10 @@ const createNoteDOM = (note) => {
 
   const pin = noteTopDOM.querySelector('.pin');
   const checkedPin = noteTopDOM.querySelector('.checked-pin');
+  const bin = imgBoxBottomDOM.querySelector('.bin-icon');
 
-  if (!note.pin) {
-    checkedPin.classList.add('unvisible');
-  } else {
-    pin.classList.add('unvisible');
-  }
-
-  pin.addEventListener('click', () => {
-    pin.classList.toggle('unvisible');
-    checkedPin.classList.toggle('unvisible');
-    note.pin = true;
-    localStorage.setItem(note.id, JSON.stringify(note));
-    getAllNotes();
-  });
-  checkedPin.addEventListener('click', () => {
-    pin.classList.toggle('unvisible');
-    checkedPin.classList.toggle('unvisible');
-    note.pin = false;
-    localStorage.setItem(note.id, JSON.stringify(note));
-    getAllNotes();
-  });
+  pinEvents(note, pin, checkedPin);
+  binEvents(note, bin);
 
   container.appendChild(noteDOM);
 };
