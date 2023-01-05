@@ -1,4 +1,6 @@
-import { pinEvents, binEvents } from './noteEvents.js';
+import { pinEvents, binEvents, doneEvents } from './noteEvents.js';
+import { showNotes } from './helpers/enum.js';
+import { showNotesPage } from './panel.js';
 
 let id = 1;
 const noteTemplate = document.querySelector('.note');
@@ -14,6 +16,7 @@ class Note {
     this.pin = false;
     this.isDone = false;
     this.date = Date.now();
+    this.showNotes = showNotes.All;
   }
 
   save() {
@@ -44,14 +47,20 @@ const createNoteDOM = (note) => {
   noteTitleDOM.textContent = `${note.title}`;
   noteContentDOM.innerHTML = `${note.content}`;
   noteDateDOM.innerHTML = `${today.toDateString()}`;
-  noteDOM.style.backgroundColor = `${note.color}`
+  noteDOM.style.backgroundColor = `${note.color}`;
 
   const pin = noteTopDOM.querySelector('.pin');
   const checkedPin = noteTopDOM.querySelector('.checked-pin');
   const bin = imgBoxBottomDOM.querySelector('.bin-icon');
+  const doneLabel = noteBottomDOM.querySelector('.done-label');
+  const doneCheckbox = doneLabel.querySelector('.done-input');
 
   pinEvents(note, pin, checkedPin);
   binEvents(note, bin);
+  doneEvents(note, doneCheckbox);
+
+  if (note.isDone) doneCheckbox.checked = true;
+  if (!note.isDone) doneCheckbox.checked = false;
 
   container.appendChild(noteDOM);
 };
@@ -64,11 +73,26 @@ const getAllNotes = () => {
     notesArray.push(JSON.parse(note));
   }
   for (const note of notesArray.sort((a, b) => b.id - a.id)) {
-    if (note.pin === true) createNoteDOM(note);
+    if (showNotesPage === showNotes.All) {
+      if (note.pin && !note.isDone) createNoteDOM(note);
+    }
+    if (showNotesPage === showNotes.Done) {
+      if (note.pin && note.isDone) createNoteDOM(note);
+    }
   }
   for (const note of notesArray.sort((a, b) => b.id - a.id)) {
-    if (note.pin !== true) createNoteDOM(note);
+    if (showNotesPage === showNotes.All) {
+      if (!note.pin && !note.isDone) createNoteDOM(note);
+    }
+    if (showNotesPage === showNotes.Done) {
+      if (!note.pin && note.isDone) createNoteDOM(note);
+    }
   }
 };
 
-export { Note, getAllNotes };
+const updateNote = (note) => {
+  localStorage.setItem(note.id, JSON.stringify(note));
+  getAllNotes();
+};
+
+export { Note, getAllNotes, updateNote };

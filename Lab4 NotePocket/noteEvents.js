@@ -1,4 +1,4 @@
-import { getAllNotes } from './note.js';
+import { getAllNotes, updateNote } from './note.js';
 
 const pinEvents = (note, pin, checkedPin) => {
   if (!note.pin) {
@@ -11,15 +11,13 @@ const pinEvents = (note, pin, checkedPin) => {
     pin.classList.toggle('unvisible');
     checkedPin.classList.toggle('unvisible');
     note.pin = true;
-    localStorage.setItem(note.id, JSON.stringify(note));
-    getAllNotes();
+    updateNote(note);
   });
   checkedPin.addEventListener('click', () => {
     pin.classList.toggle('unvisible');
     checkedPin.classList.toggle('unvisible');
     note.pin = false;
-    localStorage.setItem(note.id, JSON.stringify(note));
-    getAllNotes();
+    updateNote(note);
   });
 };
 
@@ -30,4 +28,15 @@ const binEvents = (note, bin) => {
   });
 };
 
-export { pinEvents, binEvents };
+const doneEvents = (note, checkbox) => {
+  checkbox.addEventListener('change', (event) => {
+    if (event.currentTarget.checked) {
+      note.isDone = true;
+    } else {
+      note.isDone = false;
+    }
+    updateNote(note);
+  });
+};
+
+export { pinEvents, binEvents, doneEvents };
