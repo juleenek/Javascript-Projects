@@ -2,7 +2,7 @@
 
 import { createColorsBtns } from './helpers/colors.js';
 import { Note, getAllNotes } from './note.js';
-import { noteColor } from './helpers/colors.js';
+import { noteColor, resetColorsBorder } from './helpers/colors.js';
 import { getAllNotesEvent, getDoneNotesEvent } from './panel.js';
 
 const createBtn = document.querySelector('.create-btn');
@@ -14,9 +14,16 @@ const getAllNotesBtn = document.querySelector('.all-notes-btn');
 
 const createButtonEvent = () => {
   const note = new Note(titleInput.value, contentArea.value, noteColor);
-  console.log(note);
   note.save();
+
   getAllNotes();
+  clearForm();
+};
+
+const clearForm = () => {
+  titleInput.value = '';
+  contentArea.value = '';
+  resetColorsBorder();
 };
 
 createBtn.addEventListener('click', createButtonEvent);
@@ -25,3 +32,5 @@ getDoneNotesBtn.addEventListener('click', getDoneNotesEvent);
 
 createColorsBtns();
 getAllNotes();
+
+export { createBtn, titleInput, contentArea, clearForm };

@@ -30,3 +30,9 @@ export const createColorsBtns = () => {
     });
   }
 };
+
+export const resetColorsBorder = () => {
+  for (const colorDiv of document.querySelectorAll('.color')) {
+    colorDiv.style.border = `1px solid #455a8c7c`;
+  }
+};

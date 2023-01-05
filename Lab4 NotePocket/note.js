@@ -1,4 +1,4 @@
-import { pinEvents, binEvents, doneEvents } from './noteEvents.js';
+import { pinEvents, binEvents, doneEvents, editEvents } from './noteEvents.js';
 import { showNotes } from './helpers/enum.js';
 import { showNotesPage } from './panel.js';
 
@@ -52,12 +52,14 @@ const createNoteDOM = (note) => {
   const pin = noteTopDOM.querySelector('.pin');
   const checkedPin = noteTopDOM.querySelector('.checked-pin');
   const bin = imgBoxBottomDOM.querySelector('.bin-icon');
+  const editIcon = imgBoxBottomDOM.querySelector('.edit-icon');
   const doneLabel = noteBottomDOM.querySelector('.done-label');
   const doneCheckbox = doneLabel.querySelector('.done-input');
 
   pinEvents(note, pin, checkedPin);
   binEvents(note, bin);
   doneEvents(note, doneCheckbox);
+  editEvents(note, noteDOM, editIcon);
 
   if (note.isDone) doneCheckbox.checked = true;
   if (!note.isDone) doneCheckbox.checked = false;

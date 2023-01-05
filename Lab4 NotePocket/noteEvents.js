@@ -1,21 +1,25 @@
 import { getAllNotes, updateNote } from './note.js';
+import { createBtn, titleInput, contentArea, clearForm } from './main.js';
+import { noteColor } from './helpers/colors.js';
+
+const editBtn = document.querySelector('.edit-btn');
 
 const pinEvents = (note, pin, checkedPin) => {
   if (!note.pin) {
-    checkedPin.classList.add('unvisible');
+    checkedPin.classList.add('invisible');
   } else {
-    pin.classList.add('unvisible');
+    pin.classList.add('invisible');
   }
 
   pin.addEventListener('click', () => {
-    pin.classList.toggle('unvisible');
-    checkedPin.classList.toggle('unvisible');
+    pin.classList.toggle('invisible');
+    checkedPin.classList.toggle('invisible');
     note.pin = true;
     updateNote(note);
   });
   checkedPin.addEventListener('click', () => {
-    pin.classList.toggle('unvisible');
-    checkedPin.classList.toggle('unvisible');
+    pin.classList.toggle('invisible');
+    checkedPin.classList.toggle('invisible');
     note.pin = false;
     updateNote(note);
   });
@@ -39,4 +43,25 @@ const doneEvents = (note, checkbox) => {
   });
 };
 
-export { pinEvents, binEvents, doneEvents };
+const editEvents = (note, noteDOM, editIcon) => {
+  editIcon.addEventListener('click', () => {
+    createBtn.classList.toggle('invisible');
+    editBtn.classList.toggle('invisible');
+    noteDOM.classList.toggle('invisible');
+    titleInput.value = note.title;
+    contentArea.value = note.content;
+
+    editBtn.addEventListener('click', () => {
+      note.title = titleInput.value;
+      note.content = contentArea.value;
+      note.color = noteColor;
+      noteDOM.classList.toggle('invisible');
+      createBtn.classList.toggle('invisible');
+      editBtn.classList.toggle('invisible');
+      updateNote(note);
+      clearForm();
+    });
+  });
+};
+
+export { pinEvents, binEvents, doneEvents, editEvents };
