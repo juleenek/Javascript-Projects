@@ -12,7 +12,7 @@ body {
 .container {
   display: flex;
   flex-wrap: wrap;
-
+  padding-top: 60px;
   width: 1250px;
   align-items: center;
 }
@@ -161,21 +161,63 @@ button:hover {
   font-size: 12px;
 }
 
-/* width */
 .note-content::-webkit-scrollbar {
   width: 20px;
 }
 
-/* Track */
 .note-content::-webkit-scrollbar-track {
- background-color: #ffffff95;
+  background-color: #ffffff95;
 }
- 
-/* Handle */
+
 .note-content::-webkit-scrollbar-thumb {
   background: rgba(0, 0, 0, 0.117);
   filter: brightness(150%);
   border: 5px solid transparent;
   border-radius: 2px;
   background-clip: content-box;
+}
+
+.panel {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 300px;
+  background-color: #8498c6;
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 60px;
+  width: 100vw;
+  -webkit-box-shadow: inset 0px 0px 33px -19px rgba(66, 68, 90, 1);
+  -moz-box-shadow: inset 0px 0px 33px -19px rgba(66, 68, 90, 1);
+  box-shadow: inset 0px 0px 33px -19px rgba(66, 68, 90, 1);
+}
+
+.search-input {
+  width: 450px;
+}
+
+.panel-btn {
+  background-color: #ffffff00;
+  width: 120px;
+  color: #ffffff;
+  font-size: 18px;
+  border: none;
+  border-radius: 0;
+  box-shadow: none;
+}
+
+.panel-btn:hover {
+  border: none;
+}
+
+.panel-btn:after {
+  display: block;
+  content: '';
+  border-bottom: 1px solid #ffffff;
+  transform: scaleX(0);
+  transition: transform 250ms ease-in-out;
+}
+.panel-btn:hover:after {
+  transform: scaleX(0.3);
 }
