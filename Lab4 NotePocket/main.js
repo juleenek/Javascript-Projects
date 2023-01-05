@@ -33,4 +33,4 @@ getDoneNotesBtn.addEventListener('click', getDoneNotesEvent);
 createColorsBtns();
 getAllNotes();
 
-export { createBtn, titleInput, contentArea, clearForm };
+export { createBtn, clearForm };

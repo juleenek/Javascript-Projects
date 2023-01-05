@@ -1,8 +1,10 @@
 import { getAllNotes, updateNote } from './note.js';
-import { createBtn, titleInput, contentArea, clearForm } from './main.js';
+import { createBtn, clearForm } from './main.js';
 import { noteColor } from './helpers/colors.js';
 
 const editBtn = document.querySelector('.edit-btn');
+const titleInput = document.querySelector('.title-input');
+const contentArea = document.querySelector('.content-textarea');
 
 const pinEvents = (note, pin, checkedPin) => {
   if (!note.pin) {
@@ -45,21 +47,24 @@ const doneEvents = (note, checkbox) => {
 
 const editEvents = (note, noteDOM, editIcon) => {
   editIcon.addEventListener('click', () => {
-    createBtn.classList.toggle('invisible');
-    editBtn.classList.toggle('invisible');
-    noteDOM.classList.toggle('invisible');
     titleInput.value = note.title;
     contentArea.value = note.content;
+    noteDOM.classList.add('invisible');
+    createBtn.classList.add('invisible');
+    editBtn.classList.remove('invisible');
 
     editBtn.addEventListener('click', () => {
       note.title = titleInput.value;
+      console.log(titleInput.value);
       note.content = contentArea.value;
       note.color = noteColor;
-      noteDOM.classList.toggle('invisible');
-      createBtn.classList.toggle('invisible');
-      editBtn.classList.toggle('invisible');
       updateNote(note);
-      clearForm();
+      noteDOM.classList.remove('invisible');
+      createBtn.classList.remove('invisible');
+      editBtn.classList.add('invisible');
+      setTimeout(function () {
+        clearForm();
+      }, 100);
     });
   });
 };

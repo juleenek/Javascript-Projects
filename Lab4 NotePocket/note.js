@@ -42,11 +42,13 @@ const createNoteDOM = (note) => {
 
   const noteTitleDOM = noteTopDOM.querySelector('.title-note');
   const noteContentDOM = noteDOM.querySelector('.note-content');
-  const noteDateDOM = noteBottomDOM.querySelector('.note-date');
+  const noteDateDOM = noteDOM.querySelector('.note-date');
 
   noteTitleDOM.textContent = `${note.title}`;
   noteContentDOM.innerHTML = `${note.content}`;
-  noteDateDOM.innerHTML = `${today.toDateString()}`;
+  noteDateDOM.innerHTML = `${today
+    .toUTCString()
+    .slice(0, today.toUTCString().length - 3)}`;
   noteDOM.style.backgroundColor = `${note.color}`;
 
   const pin = noteTopDOM.querySelector('.pin');
