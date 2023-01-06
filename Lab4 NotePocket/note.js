@@ -55,8 +55,8 @@ export const createNoteDOM = (note) => {
   noteTitleDOM.textContent = `${note.title}`;
   noteContentDOM.innerHTML = `${note.content}`;
   noteDateDOM.innerHTML = `${today
-    .toUTCString()
-    .slice(0, today.toUTCString().length - 3)}`;
+    .toString()
+    .slice(0, today.toUTCString().length - 4)}`;
   noteDOM.style.backgroundColor = `${note.color}`;
 
   addTagsToNote(note, tagsBoxDOM);
