@@ -7,13 +7,19 @@ import { getAllNotesEvent, getDoneNotesEvent } from './panel.js';
 
 const createBtn = document.querySelector('.create-btn');
 const titleInput = document.querySelector('.title-input');
+const tagsInput = document.querySelector('.tags-input');
 const contentArea = document.querySelector('.content-textarea');
 
 const getDoneNotesBtn = document.querySelector('.done-notes-btn');
 const getAllNotesBtn = document.querySelector('.all-notes-btn');
 
 const createButtonEvent = () => {
-  const note = new Note(titleInput.value, contentArea.value, noteColor);
+  const note = new Note(
+    titleInput.value,
+    contentArea.value,
+    tagsInput.value,
+    noteColor
+  );
   note.save();
 
   getAllNotes();
@@ -23,6 +29,7 @@ const createButtonEvent = () => {
 const clearForm = () => {
   titleInput.value = '';
   contentArea.value = '';
+  tagsInput.value = '';
   resetColorsBorder();
 };
 

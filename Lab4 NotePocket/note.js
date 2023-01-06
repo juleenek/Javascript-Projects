@@ -1,4 +1,10 @@
-import { pinEvents, binEvents, doneEvents, editEvents } from './noteEvents.js';
+import {
+  pinEvent,
+  binEvent,
+  doneEvent,
+  editEvent,
+  tagEvent,
+} from './noteEvents.js';
 import { showNotes } from './helpers/enum.js';
 import { showNotesPage } from './panel.js';
 
@@ -8,13 +14,14 @@ const container = document.querySelector('.container');
 let notesArray = [];
 
 class Note {
-  constructor(title, content, color) {
+  constructor(title, content, tagsString, color) {
     this.id = id;
     this.title = title;
     this.content = content;
     this.color = color;
     this.pin = false;
     this.isDone = false;
+    this.tags = tagsString.split(' ');
     this.date = Date.now();
     this.showNotes = showNotes.All;
   }
@@ -25,20 +32,21 @@ class Note {
   }
 }
 
-const clearNotes = () => {
+export const clearNotes = () => {
   const notesDOM = document.querySelectorAll('.note');
   for (const noteDOM of notesDOM) {
     container.removeChild(noteDOM);
   }
 };
 
-const createNoteDOM = (note) => {
+export const createNoteDOM = (note) => {
   const today = new Date(note.date);
   const noteDOM = noteTemplate.cloneNode(true);
 
   const noteTopDOM = noteDOM.querySelector('.note-top');
   const noteBottomDOM = noteDOM.querySelector('.note-bottom');
   const imgBoxBottomDOM = noteDOM.querySelector('.img-box-bottom');
+  const tagsBoxDOM = noteDOM.querySelector('.tags-box');
 
   const noteTitleDOM = noteTopDOM.querySelector('.title-note');
   const noteContentDOM = noteDOM.querySelector('.note-content');
@@ -51,6 +59,8 @@ const createNoteDOM = (note) => {
     .slice(0, today.toUTCString().length - 3)}`;
   noteDOM.style.backgroundColor = `${note.color}`;
 
+  addTagsToNote(note, tagsBoxDOM);
+
   const pin = noteTopDOM.querySelector('.pin');
   const checkedPin = noteTopDOM.querySelector('.checked-pin');
   const bin = imgBoxBottomDOM.querySelector('.bin-icon');
@@ -58,10 +68,10 @@ const createNoteDOM = (note) => {
   const doneLabel = noteBottomDOM.querySelector('.done-label');
   const doneCheckbox = doneLabel.querySelector('.done-input');
 
-  pinEvents(note, pin, checkedPin);
-  binEvents(note, bin);
-  doneEvents(note, doneCheckbox);
-  editEvents(note, noteDOM, editIcon);
+  pinEvent(note, pin, checkedPin);
+  binEvent(note, bin);
+  doneEvent(note, doneCheckbox);
+  editEvent(note, noteDOM, editIcon);
 
   if (note.isDone) doneCheckbox.checked = true;
   if (!note.isDone) doneCheckbox.checked = false;
@@ -97,6 +107,18 @@ const getAllNotes = () => {
 const updateNote = (note) => {
   localStorage.setItem(note.id, JSON.stringify(note));
   getAllNotes();
+};
+
+const addTagsToNote = (note, tagsBoxDOM) => {
+  for (const tag of note.tags) {
+    if (tag !== '') {
+      const tagDiv = document.createElement('div');
+      tagDiv.classList.add('tag');
+      tagDiv.textContent = `${tag}`;
+      tagDiv.addEventListener('click', () => tagEvent(tagDiv));
+      tagsBoxDOM.appendChild(tagDiv);
+    }
+  }
 };
 
 export { Note, getAllNotes, updateNote };

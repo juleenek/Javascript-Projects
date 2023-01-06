@@ -1,12 +1,15 @@
-import { getAllNotes, updateNote } from './note.js';
+import { getAllNotes, updateNote, clearNotes, createNoteDOM } from './note.js';
 import { createBtn, clearForm } from './main.js';
 import { noteColor } from './helpers/colors.js';
 
 const editBtn = document.querySelector('.edit-btn');
 const titleInput = document.querySelector('.title-input');
+const tagsInput = document.querySelector('.tags-input');
 const contentArea = document.querySelector('.content-textarea');
+const noteForm = document.querySelector('.main-note');
+let notesArray = [];
 
-const pinEvents = (note, pin, checkedPin) => {
+const pinEvent = (note, pin, checkedPin) => {
   if (!note.pin) {
     checkedPin.classList.add('invisible');
   } else {
@@ -27,14 +30,14 @@ const pinEvents = (note, pin, checkedPin) => {
   });
 };
 
-const binEvents = (note, bin) => {
+const binEvent = (note, bin) => {
   bin.addEventListener('click', () => {
     localStorage.removeItem(note.id);
     getAllNotes();
   });
 };
 
-const doneEvents = (note, checkbox) => {
+const doneEvent = (note, checkbox) => {
   checkbox.addEventListener('change', (event) => {
     if (event.currentTarget.checked) {
       note.isDone = true;
@@ -45,10 +48,28 @@ const doneEvents = (note, checkbox) => {
   });
 };
 
-const editEvents = (note, noteDOM, editIcon) => {
+const tagEvent = (tagDiv) => {
+  notesArray = [];
+  clearNotes();
+  for (let i = 0; i < localStorage.length; i++) {
+    const note = localStorage.getItem(localStorage.key(i));
+    notesArray.push(JSON.parse(note));
+  }
+  for (const note of notesArray.sort((a, b) => b.id - a.id)) {
+    for (const tag of note.tags) {
+      if (tag === tagDiv.textContent) {
+        createNoteDOM(note);
+        noteForm.classList.add('invisible');
+      }
+    }
+  }
+};
+
+const editEvent = (note, noteDOM, editIcon) => {
   editIcon.addEventListener('click', () => {
     titleInput.value = note.title;
     contentArea.value = note.content;
+    tagsInput.value = note.tags.join(' ');
     noteDOM.classList.add('invisible');
     createBtn.classList.add('invisible');
     editBtn.classList.remove('invisible');
@@ -57,6 +78,7 @@ const editEvents = (note, noteDOM, editIcon) => {
       note.title = titleInput.value;
       console.log(titleInput.value);
       note.content = contentArea.value;
+      note.tags = tagsInput.value.split(' ');
       note.color = noteColor;
       updateNote(note);
       noteDOM.classList.remove('invisible');
@@ -69,4 +91,4 @@ const editEvents = (note, noteDOM, editIcon) => {
   });
 };
 
-export { pinEvents, binEvents, doneEvents, editEvents };
+export { pinEvent, binEvent, doneEvent, editEvent, tagEvent };

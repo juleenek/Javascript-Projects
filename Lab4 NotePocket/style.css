@@ -6,6 +6,9 @@
 
 body {
   display: flex;
+  margin: 0;
+  height: 100%;
+  overflow-x: hidden;
   justify-content: center;
 }
 
@@ -13,7 +16,7 @@ body {
   display: flex;
   flex-wrap: wrap;
   padding-top: 60px;
-  width: 1250px;
+  width: 1240px;
   align-items: center;
 }
 
@@ -24,7 +27,7 @@ body {
   flex-direction: column;
   justify-content: center;
   width: 350px;
-  height: 250px;
+  height: 270px;
   padding: 20px 20px 20px 20px;
   margin: 20px 10px;
   font-family: 'Manrope';
@@ -228,8 +231,51 @@ button:hover {
   transform: scaleX(0.3);
 }
 
-.pin {
+.pin,
+.checked-pin {
   position: absolute;
   top: 15px;
   right: 15px;
+}
+
+.tags-box {
+  gap: 10px;
+  position: absolute;
+  display: flex;
+  bottom: 3px;
+  left: 20px;
+  width: 250px;
+  font-size: 13.5px;
+  overflow-x: scroll;
+}
+
+.tag {
+  background-color: #fdfdfda2;
+  border-radius: 10px;
+  padding: 2px 7px;
+  margin: 0 0 5px 0;
+}
+
+.tags-box::-webkit-scrollbar {
+  width: 20px;
+}
+
+.tags-box::-webkit-scrollbar-track {
+  background-color: #00000000;
+}
+
+.tags-box::-webkit-scrollbar-thumb {
+  background: #00000012;
+  filter: brightness(150%);
+  border: 5px solid transparent;
+  border-radius: 2px;
+  background-clip: content-box;
+}
+
+.tag:hover {
+  background-color: #fdfdfd;
+}
+
+.tag:hover {
+  background-color: #fdfdfd;
 }
