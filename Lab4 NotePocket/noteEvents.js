@@ -1,6 +1,7 @@
 import { getAllNotes, updateNote, clearNotes, createNoteDOM } from './note.js';
 import { createBtn, clearForm } from './main.js';
 import { noteColor } from './helpers/colors.js';
+import { invisibleEditIcons } from './panel.js';
 
 const editBtn = document.querySelector('.edit-btn');
 const titleInput = document.querySelector('.title-input');
@@ -58,6 +59,7 @@ const tagEvent = (tagDiv) => {
   for (const note of notesArray.sort((a, b) => b.id - a.id)) {
     for (const tag of note.tags) {
       if (tag === tagDiv.textContent) {
+        invisibleEditIcons();
         createNoteDOM(note);
         noteForm.classList.add('invisible');
       }
