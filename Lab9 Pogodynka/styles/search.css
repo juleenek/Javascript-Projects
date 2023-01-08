@@ -1,9 +1,9 @@
 .search-box {
   display: flex;
-  position: relative;
   justify-content: center;
   align-items: center;
   padding-top: 30px;
+  position: relative;
   height: 50px;
 }
 
@@ -12,7 +12,7 @@
   width: 500px;
   margin-right: 20px;
   border: none;
-  box-shadow: rgba(0, 0, 0, 0.12) 0px 1px 3px, rgba(0, 0, 0, 0.24) 0px 1px 2px;
+  box-shadow: #0000001f 0px 1px 3px, #0000003d 0px 1px 2px;
   padding-left: 20px;
   font-family: 'NunitoSansrope';
   font-weight: 100;
@@ -44,11 +44,17 @@
   transform: translateY(-2px);
 }
 
+.error-box {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+}
+
 .error-msg {
   position: absolute;
   color: #cb3d3dcb;
+  width: 650px;
+  top: 70px;
   font-weight: 100;
   font-size: 13px;
-  left: 15%;
-  bottom: -40%;
 }

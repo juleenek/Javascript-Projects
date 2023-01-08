@@ -11,20 +11,25 @@
     <title>Pogodynka Project</title>
   </head>
   <body>
-    <div class="search-box">
-      <input type="text" class="search-input" placeholder="Enter location" />
-      <button class="search-btn">Search</button>
-      <p class="error-msg invisible">Please, try again.</p>
-    </div>
-    <div class="panels">
-      <div class="panel invisible">
-        <div class="weather-icon"></div>
-        <div class="weather-content">
-          <h3 class="location-title"></h3>
-          <p class="weather-desc"></p>
-          <p class="weather-temp"></p>
-          <p class="weather-humidity"></p>
-          <p class="weather-wind"></p>
+    <div class="container">
+      <div class="search-box">
+        <input type="text" class="search-input" placeholder="Enter location" />
+        <button class="search-btn">Search</button>
+      </div>
+      <div class="error-box">
+        <p class="error-msg invisible">Please, try again.</p>
+      </div>
+      <div class="panels">
+        <div class="panel invisible">
+          <img class="delete-icon" src="./assets/images/szaryjasny.png" alt="">
+          <div class="weather-content">
+            <img class="weather-icon" src="" alt="Icon" />
+            <h3 class="location-title"></h3>
+            <p class="weather-desc"></p>
+            <p class="weather-temp"></p>
+            <p class="weather-humidity"></p>
+            <p class="weather-wind"></p>
+          </div>
         </div>
       </div>
     </div>

@@ -12,6 +12,7 @@ export const fetchData = (location) => {
   })
     .then((response) => response.json())
     .then((data) => {
+      if (localStorage.length >= 10) return;
       removeErrorMsg();
       const weather = saveDataWeather(data);
       createPanel(weather);
@@ -25,6 +26,11 @@ const saveDataWeather = (data) => {
   const weather = new Weather(data);
   weather.save();
   return weather;
+};
+
+const refreshData = () => {
+  const id = setInterval(apiCall, 50000);
+  return () => clearInterval(id);
 };
 
 const createErrorMsg = () => {

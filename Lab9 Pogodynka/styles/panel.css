@@ -1,13 +1,12 @@
 .panels {
   display: flex;
   width: auto;
-  height: 450px;
   overflow-wrap: break-word;
   overflow-x: scroll;
   overflow-y: hidden;
   white-space: nowrap;
   margin-bottom: 20px;
-  padding: 50px 10px 100px 50px;
+  padding: 70px 10px 70px 50px;
 }
 
 .panels::-webkit-scrollbar {
@@ -29,10 +28,11 @@
 
 .panel {
   display: flex;
+  position: relative;
   margin-right: 50px;
+  padding: 20px 0 40px 0;
   justify-content: center;
   width: 300px;
-  height: 450px;
   box-shadow: rgba(0, 0, 0, 0.1) 0px 20px 25px -5px,
     rgba(0, 0, 0, 0.04) 0px 10px 10px -5px;
   transition: box-shadow 200ms ease-in-out;
@@ -50,4 +50,32 @@
 .weather-content p {
   font-family: 'NunitoSansrope';
   font-weight: 100;
+}
+
+.weather-icon {
+  width: 80px;
+}
+
+.weather-content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.weather-content * {
+  margin: 7px 0;
+}
+
+.delete-icon {
+  position: absolute;
+  top: 25px;
+  right: 22px;
+  width: 22px;
+  transform: translateY(0);
+  transition: transform 150ms, box-shadow 150ms;
+}
+
+.delete-icon:hover {
+  filter: drop-shadow(0px 0px 0px #67676729);
+  transform: translateY(-2px);
 }
