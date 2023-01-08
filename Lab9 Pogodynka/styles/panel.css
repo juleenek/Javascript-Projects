@@ -31,10 +31,16 @@
   display: flex;
   margin-right: 50px;
   justify-content: center;
-  width: 100%;
+  width: 300px;
   height: 450px;
   box-shadow: rgba(0, 0, 0, 0.1) 0px 20px 25px -5px,
     rgba(0, 0, 0, 0.04) 0px 10px 10px -5px;
+  transition: box-shadow 200ms ease-in-out;
+}
+
+.panel:hover {
+  box-shadow: rgba(0, 0, 0, 0.2) 0px 20px 25px -5px,
+    rgba(0, 0, 0, 0.1) 0px 10px 10px -5px;
 }
 
 .weather-content {
