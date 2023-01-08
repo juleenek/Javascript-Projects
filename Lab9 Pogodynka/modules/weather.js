@@ -4,7 +4,7 @@ export class Weather {
   constructor(data) {
     this.id = id;
     this.location = data.name;
-    this.county = data.sys.country;
+    this.country = data.sys.country;
     this.description = data.weather[0].description;
     this.temperature = Math.round(data.main.temp) - 273;
     this.humidity = data.main.humidity;
@@ -17,3 +17,4 @@ export class Weather {
     id++;
   }
 }
+

@@ -12,3 +12,5 @@ const searchWeather = () => {
 };
 
 searchBtn.addEventListener('click', searchWeather);
+
+fetchData('Krakow');

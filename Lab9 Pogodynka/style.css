@@ -5,5 +5,5 @@ body {
 }
 
 .invisible {
-  display: none;
+  display: none !important;
 }

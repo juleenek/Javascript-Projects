@@ -1,4 +1,5 @@
 import { Weather } from './weather.js';
+import { createPanel } from './panel.js';
 
 const errorMsg = document.querySelector('.error-msg');
 
@@ -12,7 +13,8 @@ export const fetchData = (location) => {
     .then((response) => response.json())
     .then((data) => {
       removeErrorMsg();
-      saveDataWeather(data);
+      const weather = saveDataWeather(data);
+      createPanel(weather);
     })
     .catch(() => {
       createErrorMsg();
@@ -22,6 +24,7 @@ export const fetchData = (location) => {
 const saveDataWeather = (data) => {
   const weather = new Weather(data);
   weather.save();
+  return weather;
 };
 
 const createErrorMsg = () => {
