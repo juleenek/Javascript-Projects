@@ -1,5 +1,7 @@
 import { Weather } from './weather.js';
 
+const errorMsg = document.querySelector('.error-msg');
+
 export const fetchData = (location) => {
   let key = 'a5ac7798787781b914ccdd29364dbe6e';
   let url = `https://api.openweathermap.org/data/2.5/weather?q=${location}&appid=${key}`;
@@ -9,14 +11,23 @@ export const fetchData = (location) => {
   })
     .then((response) => response.json())
     .then((data) => {
+      removeErrorMsg();
       saveDataWeather(data);
     })
-    .catch((error) => {
-      console.error('Error:', error);
+    .catch(() => {
+      createErrorMsg();
     });
 };
 
 const saveDataWeather = (data) => {
   const weather = new Weather(data);
   weather.save();
+};
+
+const createErrorMsg = () => {
+  errorMsg.classList.remove('invisible');
+};
+
+const removeErrorMsg = () => {
+  errorMsg.classList.add('invisible');
 };

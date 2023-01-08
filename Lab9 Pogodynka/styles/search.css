@@ -1,5 +1,6 @@
 .search-box {
   display: flex;
+  position: relative;
   justify-content: center;
   align-items: center;
   padding-top: 30px;
@@ -41,4 +42,13 @@
 .search-btn:hover {
   box-shadow: rgba(0, 0, 0, 0.15) 0 3px 9px 0;
   transform: translateY(-2px);
+}
+
+.error-msg {
+  position: absolute;
+  color: #cb3d3dcb;
+  font-weight: 100;
+  font-size: 13px;
+  left: 15%;
+  bottom: -40%;
 }
