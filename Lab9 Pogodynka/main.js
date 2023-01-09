@@ -1,14 +1,14 @@
 'use strict';
 
-import { fetchData } from './modules/data.js';
+import { loadLocation } from './modules/api.js';
+import { createWeather } from './modules/weather.js';
 
 const searchInput = document.querySelector('.search-input');
 const searchBtn = document.querySelector('.search-btn');
 
-const searchWeather = () => {
-  const location = searchInput.value;
+const searchWeather = (location) => {
   if (location.length < 3) return;
-  fetchData(location);
+  createWeather(location);
   searchInput.value = '';
 };
 
@@ -16,13 +16,17 @@ searchBtn.addEventListener('click', searchWeather);
 document.addEventListener('keyup', function (event) {
   event.preventDefault();
   if (event.key === 'Enter') {
-    searchWeather();
+    searchWeather(searchInput.value);
   }
 });
 
 const refreshPage = () => {
   localStorage.clear();
-  fetchData('Krakow');
+  searchWeather('Krakow');
 };
+
+searchInput.addEventListener('input', () => {
+  console.log(loadLocation(searchInput.value));
+});
 
 refreshPage();

@@ -1,7 +1,11 @@
-let id = 1;
+import { removeErrorMsg } from './error.js';
+import { loadWeather } from './api.js';
+import { createPanel } from './panel.js';
+
+let idCount = 1;
 
 export class Weather {
-  constructor(data) {
+  constructor(data, id = idCount) {
     this.id = id;
     this.location = data.name;
     this.country = data.sys.country;
@@ -13,8 +17,22 @@ export class Weather {
   }
 
   save() {
-    localStorage.setItem(id, JSON.stringify(this));
-    id++;
+    localStorage.setItem(this.id, JSON.stringify(this));
+    idCount++;
   }
 }
 
+export const createWeather = async (location) => {
+  const data = await loadWeather(location);
+  if (localStorage.length >= 10) return;
+  removeErrorMsg();
+  console.log(data);
+  const weather = saveDataWeather(data);
+  createPanel(weather);
+};
+
+const saveDataWeather = (data) => {
+  const weather = new Weather(data);
+  weather.save();
+  return weather;
+};
