@@ -8,12 +8,20 @@
     <link rel="stylesheet" href="./styles/search.css" />
     <link rel="stylesheet" href="./styles/fonts.css" />
     <link rel="stylesheet" href="./styles/panel.css" />
+    <link rel="stylesheet" href="./styles/autocomplete.css" />
     <title>Pogodynka Project</title>
   </head>
   <body>
     <div class="container">
       <div class="search-box">
-        <input type="text" class="search-input" placeholder="Enter location" />
+        <div class="search-relative-box">
+          <input
+            type="text"
+            class="search-input"
+            placeholder="Enter location"
+          />
+          <div class="autocomplete-options"></div>
+        </div>
         <button class="search-btn">Search</button>
       </div>
       <div class="error-box">
@@ -21,9 +29,14 @@
       </div>
       <div class="panels">
         <div class="panel invisible">
-          <img class="delete-icon" src="./assets/images/szaryjasny.png" alt="">
+          <img
+            class="delete-icon"
+            src="./assets/images/szaryjasny.png"
+            alt="Delete"
+            draggable="false"
+          />
           <div class="weather-content">
-            <img class="weather-icon" src="" alt="Icon" />
+            <img class="weather-icon" src="" alt="Icon"  draggable="false" />
             <h3 class="location-title"></h3>
             <p class="weather-desc"></p>
             <p class="weather-temp"></p>

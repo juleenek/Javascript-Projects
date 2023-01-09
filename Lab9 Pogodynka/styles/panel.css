@@ -1,5 +1,6 @@
 .panels {
   display: flex;
+  z-index: -20;
   width: auto;
   overflow-wrap: break-word;
   overflow-x: scroll;

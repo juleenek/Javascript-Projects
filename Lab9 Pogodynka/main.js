@@ -2,11 +2,16 @@
 
 import { loadLocation } from './modules/api.js';
 import { createWeather } from './modules/weather.js';
+import {
+  createAutocompletePanels,
+  clearAutocompletePanels,
+} from './modules/panel.js';
 
 const searchInput = document.querySelector('.search-input');
 const searchBtn = document.querySelector('.search-btn');
+let locationsAutocomplete = [];
 
-const searchWeather = (location) => {
+export const searchWeather = (location) => {
   if (location.length < 3) return;
   createWeather(location);
   searchInput.value = '';
@@ -24,11 +29,13 @@ const refreshPage = () => {
   localStorage.clear();
   searchWeather('Krakow');
 };
-const autocomplete = () => {
-  if (searchInput.value.length >= 3)
-    setTimeout(() => {
-      loadLocation(searchInput.value);
-    }, 1000);
+const autocomplete = async () => {
+  if (searchInput.value.length >= 3) {
+    loadLocation(searchInput.value).then((locations) => {
+      locationsAutocomplete = [...locations];
+      createAutocompletePanels(locationsAutocomplete);
+    });
+  }
 };
 
 const autocompleteOnKeydown = () => {
@@ -36,6 +43,8 @@ const autocompleteOnKeydown = () => {
   const waitTime = 400;
 
   searchInput.addEventListener('keyup', (e) => {
+    locationsAutocomplete = [];
+    clearAutocompletePanels();
     clearTimeout(timer);
     timer = setTimeout(() => {
       autocomplete();

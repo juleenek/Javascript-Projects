@@ -1,7 +1,10 @@
 const panelsContainer = document.querySelector('.panels');
 const panelTemplate = document.querySelector('.panel');
+const autocompleteBox = document.querySelector('.autocomplete-options');
 
-const createPanel = (weather) => {
+import { searchWeather } from '../main.js';
+
+export const createPanel = (weather) => {
   const panel = panelTemplate.cloneNode(true);
   panel.classList.remove('invisible');
 
@@ -36,4 +39,25 @@ const createPanel = (weather) => {
   panelsContainer.appendChild(panel);
 };
 
-export { createPanel };
+export const createAutocompletePanels = (locationsArray) => {
+  for (const loc of locationsArray) {
+    const option = document.createElement('div');
+    option.classList.add('option');
+    const optionText = document.createElement('p');
+    optionText.classList.add('option-text');
+    optionText.textContent = `${loc.name}, ${loc.countryCode}`;
+
+    const name = loc.name.split(' ');
+    option.addEventListener('click', () => {
+      searchWeather(name[0]);
+      clearAutocompletePanels();
+    });
+
+    option.appendChild(optionText);
+    autocompleteBox.appendChild(option);
+  }
+};
+
+export const clearAutocompletePanels = () => {
+  autocompleteBox.innerHTML = '';
+};
