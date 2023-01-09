@@ -16,7 +16,7 @@ export const loadWeather = async (city) => {
 };
 
 export const loadLocation = async (searchPrefix) => {
-  const url = `https://wft-geo-db.p.rapidapi.com/v1/geo/adminDivisions?sort=population&minPopulation=50000&namePrefix=${searchPrefix}&limit=1`;
+  const url = `https://wft-geo-db.p.rapidapi.com/v1/geo/adminDivisions?sort=-population&minPopulation=50000&namePrefix=${searchPrefix}&limit=3`;
 
   const options = {
     method: 'GET',
@@ -26,12 +26,7 @@ export const loadLocation = async (searchPrefix) => {
     },
   };
 
-  try {
-    const response = await fetch(url, options);
-    const jsonResponse = await response.json();
-    console.log(jsonResponse);
-    return jsonResponse;
-  } catch (err) {
-    return console.error(err);
-  }
+  const response = await fetch(url, options);
+  const jsonResponse = await response.json();
+  return jsonResponse;
 };

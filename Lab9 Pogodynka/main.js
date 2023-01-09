@@ -25,9 +25,23 @@ const refreshPage = () => {
   searchWeather('Krakow');
 };
 const autocomplete = () => {
-  if (searchInput.value.length > 3) loadLocation(searchInput.value);
+  if (searchInput.value.length >= 3)
+    setTimeout(() => {
+      loadLocation(searchInput.value);
+    }, 1000);
 };
 
-searchInput.addEventListener('input', autocomplete);
+const autocompleteOnKeydown = () => {
+  let timer;
+  const waitTime = 400;
 
+  searchInput.addEventListener('keyup', (e) => {
+    clearTimeout(timer);
+    timer = setTimeout(() => {
+      autocomplete();
+    }, waitTime);
+  });
+};
+
+autocompleteOnKeydown();
 refreshPage();
