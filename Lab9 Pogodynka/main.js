@@ -24,9 +24,10 @@ const refreshPage = () => {
   localStorage.clear();
   searchWeather('Krakow');
 };
+const autocomplete = () => {
+  if (searchInput.value.length > 3) loadLocation(searchInput.value);
+};
 
-searchInput.addEventListener('input', () => {
-  console.log(loadLocation(searchInput.value));
-});
+searchInput.addEventListener('input', autocomplete);
 
 refreshPage();

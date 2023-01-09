@@ -1,4 +1,4 @@
-import { removeErrorMsg } from './error.js';
+import { removeErrorMsg, createErrorMsg } from './error.js';
 import { loadWeather } from './api.js';
 import { createPanel } from './panel.js';
 
@@ -26,12 +26,17 @@ export const createWeather = async (location) => {
   const data = await loadWeather(location);
   if (localStorage.length >= 10) return;
   removeErrorMsg();
-  console.log(data);
-  const weather = saveDataWeather(data);
+  let weather;
+  try {
+    weather = await saveDataWeather(data);
+  } catch (error) {
+    createErrorMsg();
+    return;
+  }
   createPanel(weather);
 };
 
-const saveDataWeather = (data) => {
+const saveDataWeather = async (data) => {
   const weather = new Weather(data);
   weather.save();
   return weather;
