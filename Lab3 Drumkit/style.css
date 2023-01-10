@@ -56,28 +56,28 @@ input[type='submit'] {
   outline: inherit;
 }
 
-.actions_buttons_container {
+.actions-buttons-container {
   padding-left: 10px;
   display: flex;
   align-items: center;
 }
 
-.actions_buttons_container img {
+.actions-buttons-container img {
   width: 18px;
   padding-left: 12px;
 }
 
-.tracks_buttons_container {
+.tracks-buttons-container {
   display: flex;
   align-items: center;
 }
 
-.tracks_buttons_container > * {
+.tracks-buttons-container > * {
   margin: 0 10px 0 0;
 }
 
-.tracks_container,
-.top_buttons_container {
+.tracks-container,
+.top-buttons-container {
   margin: 20px;
 }
 
@@ -86,7 +86,7 @@ input[type='submit'] {
   display: flex;
 }
 
-.track_name {
+.track-name {
   display: flex;
   width: 80px;
   padding-left: 20px;

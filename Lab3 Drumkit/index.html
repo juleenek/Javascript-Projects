@@ -5,6 +5,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="stylesheet" href="style.css" />
+    <link rel="stylesheet" href="./styles/helpers.css" />
     <title>Drumkit Project</title>
   </head>
   <body>
@@ -18,11 +19,23 @@
     <audio src="./sounds/tink.wav" controls id="tink"></audio>
     <audio src="./sounds/tom.wav" controls id="tom"></audio>
 
-    <div class="top_buttons_container">
+    <div class="top-buttons-container">
       <button>play all</button>
-      <button class="add_track_btn">add track</button>
+      <button class="add-track-btn">add track</button>
     </div>
-    <div class="tracks_container"></div>
+    <div class="tracks-container">
+      <div class="track invisible">
+        <div class="tracks-buttons-container">
+          <i class="play-button"></i><i class="pause-button"></i
+          ><i class="record-button"></i>
+        </div>
+        <p class="track-name"></p>
+        <div class="actions-buttons-container">
+          <img src="./assets/loop.png" alt="Loop" />
+          <img src="./assets/bin.png" alt="Bin" class="bin-btn" />
+        </div>
+      </div>
+    </div>
 
     <script src="main.js" type="module"></script>
   </body>
