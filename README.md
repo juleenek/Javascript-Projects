@@ -4,6 +4,7 @@ This is a repository that contains all the projects made for the "Programming in
 <br />
 <br />
 <br />
+
 ## Lab 1. Calculator 
 
 A simple project containing a calculator, takes into account the added fields and calculates the sum, average, smallest and largest number.
