@@ -1,13 +1,14 @@
 # Javascript Projects
 
 This is a repository that contains all the projects made for the "Programming in Javascript" class. Individual projects have been separated into separate repositories and can be viewed live via Github Pages (soon).
-
+<br />
 ## Lab 1. Calculator 
 
 A simple project containing a calculator, takes into account the added fields and calculates the sum, average, smallest and largest number.
 (link soon)
-
-
+<br />
+<br />
+<br />
 ## Lab 2. Slider 
 
 A project containing the basic form of a slider. There is forward and backward scrolling, slider elements can be photos, videos, but also text boxes. The slider scrolls automatically but can also be stopped.
