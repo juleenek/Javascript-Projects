@@ -1,5 +1,5 @@
 # 🚀 Javascript Projects
-
+<br />
 This is a repository that contains all the projects made for the "Programming in Javascript" class. Individual projects have been separated into separate repositories and can be viewed live via Github Pages (soon).
 <br />
 <br />
