@@ -6,7 +6,6 @@ This is a repository that contains all the projects made for the "Programming in
 Individual projects have been separated into separate repositories and can be viewed live via Github Pages (soon).
 <br />
 <br />
-<br />
 
 ## 🧮&nbsp;&nbsp;&nbsp;Lab 1. Calculator 
 
@@ -24,6 +23,7 @@ The slider scrolls automatically but can also be stopped.
 ## 🥁&nbsp;&nbsp;&nbsp;Lab 3. Drumkit 
 
 Drumkit allows you to record audio tracks. The individual sounds that can be recorded are connected to the keyboard. Sounds that can be recorded are attached to the keyboard. Tracks are added and removed dynamically.
+<br />
 <br />
 [See live](https://juleenek.github.io/Drumkit/)
 <br />
