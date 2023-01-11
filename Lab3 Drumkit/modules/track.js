@@ -10,7 +10,6 @@ export class Track {
   constructor() {
     this.id = countId;
     this.isRecording = false;
-    this.firstClick = false;
     this.trackTime = [];
     this.trackKeys = [];
     this.timer1 = null;
@@ -38,11 +37,14 @@ export class Track {
     const playBtn = trackButtonsContainer.querySelector('.play-button');
     const pauseBtn = trackButtonsContainer.querySelector('.pause-button');
     const recordBtn = trackButtonsContainer.querySelector('.record-button');
+    const stoprecordBtn =
+      trackButtonsContainer.querySelector('.stoprecord-button');
 
     const btns = {
       play: playBtn,
       pause: pauseBtn,
       record: recordBtn,
+      stoprecord: stoprecordBtn,
       bin: binBtn,
       loop: loopBtn,
     };
@@ -56,15 +58,18 @@ export class Track {
   play() {}
   pause() {}
 
-  record(button) {
+  record(button, stopButton) {
+    button.classList.add('invisible');
+    stopButton.classList.remove('invisible');
+    this.isRecording = true;
     this.timer1 = null;
     this.timer2 = null;
     let time = null;
 
     this.timer1 = Date.now();
 
-    if (!this.firstClick) {
-      document.addEventListener('keyup', (event) => {
+    document.addEventListener('keyup', (event) => {
+      if (this.isRecording) {
         this.timer2 = Date.now();
         time = this.timer2 - this.timer1;
         if (time !== 0 && time != 1) {
@@ -72,18 +77,18 @@ export class Track {
           this.trackTime.push(time);
           this.trackKeys.push(key);
           onKeyPress(key);
-          console.log(time);
-          console.log(event.key.toLowerCase());
         }
-        this.record(button);
-        this.firstClick = true;
-      });
-    }
-
-    button.addEventListener('click', () => {
-      console.log(...this.trackTime);
-      console.log(...this.trackKeys);
+        this.record(button, stopButton);
+      }
     });
+  }
+
+  stopRecord(button, stopButton) {
+    button.classList.remove('invisible');
+    stopButton.classList.add('invisible');
+    this.isRecording = false;
+    console.log(...this.trackKeys);
+    console.log(...this.trackTime);
   }
 
   remove() {
@@ -107,6 +112,9 @@ const addTrackEvents = (track, btns) => {
     track.update();
   });
   btns.record.addEventListener('click', () => {
-    track.record(btns.record);
+    track.record(btns.record, btns.stoprecord);
+  });
+  btns.stoprecord.addEventListener('click', () => {
+    track.stopRecord(btns.record, btns.stoprecord);
   });
 };
