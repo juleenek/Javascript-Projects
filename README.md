@@ -31,6 +31,9 @@ Drumkit allows you to record audio tracks. The individual sounds that can be rec
 Project includes a page through which you can add and manage added notes. Notes contain tags which, when clicked, take you to notes with the same tags. <br />Notes can be marked as done, which moves the note to the "Done notes" category. Notes can be edited. In the header, you can search for notes by typed words. Notes are saved and updated in localStorage
 <br />
 <br />
+[See live](https://juleenek.github.io/NotePocket/)
+<br />
+<br />
 ## 🎮&nbsp;&nbsp;&nbsp;Lab 6. Ball in the Hole
 
 (description and link soon)
