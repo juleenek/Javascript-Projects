@@ -98,8 +98,6 @@ export class Track {
     button.classList.remove('invisible');
     stopButton.classList.add('invisible');
     this.isRecording = false;
-    console.log(...this.trackKeys);
-    console.log(...this.trackTime);
   }
 
   remove() {
@@ -131,4 +129,15 @@ const addTrackEvents = (track, btns) => {
   btns.play.addEventListener('click', () => {
     track.play(btns.play, btns.nowPlaying);
   });
+};
+
+export const playAllTracks = () => {
+  for (const track of tracks) {
+    const trackDOM = track.elementDOM;
+    const trackButtonsContainer = trackDOM.querySelector(
+      '.tracks-buttons-container'
+    );
+    const playBtn = trackButtonsContainer.querySelector('.play-button');
+    playBtn.click();
+  }
 };

@@ -12,12 +12,12 @@ const sounds = {
   g: 'tom',
 };
 
-export const onKeyPress = (key) => {
+export const onKeyPress = async (key) => {
   const sound = sounds[key.toLowerCase()];
   playSound(sound);
 };
 
-export const playSound = (sound) => {
+export const playSound = async (sound) => {
   const audioTag = document.querySelector(`#${sound}`);
   const audio = new Audio(audioTag.src);
   audio.play();

@@ -1,12 +1,14 @@
 'use strict';
 
 import { Track } from './modules/track.js';
+import { playAllTracks } from './modules/track.js';
 
 export let tracks = [];
 export const tracksContainer = document.querySelector('.tracks-container');
 export let binBtns = [];
 
 const addTrackBtn = document.querySelector('.add-track-btn');
+const playAllTracksBtn = document.querySelector('.play-all');
 
 const createTrack = () => {
   const track = new Track();
@@ -14,3 +16,4 @@ const createTrack = () => {
 };
 
 addTrackBtn.addEventListener('click', createTrack);
+playAllTracksBtn.addEventListener('click', playAllTracks);
