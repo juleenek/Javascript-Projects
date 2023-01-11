@@ -10,14 +10,12 @@ Individual projects have been separated into separate repositories and can be vi
 ## 🧮&nbsp;&nbsp;&nbsp;Lab 1. Calculator 
 
 A simple project containing a calculator, takes into account the added fields and calculates the sum, average, smallest and largest number.
-(link soon)
 <br />
 <br />
 ## 📸&nbsp;&nbsp;&nbsp;Lab 2. Slider 
 
 A project containing the basic form of a slider. There is forward and backward scrolling, slider elements can be photos, videos, but also text boxes.
 The slider scrolls automatically but can also be stopped.
-(link soon)
 <br />
 <br />
 ## 🥁&nbsp;&nbsp;&nbsp;Lab 3. Drumkit 
