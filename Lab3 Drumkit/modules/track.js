@@ -40,9 +40,11 @@ export class Track {
     const recordBtn = trackButtonsContainer.querySelector('.record-button');
     const stoprecordBtn =
       trackButtonsContainer.querySelector('.stoprecord-button');
+    const nowPlayingBtn = trackButtonsContainer.querySelector('.now-playing');
 
     const btns = {
       play: playBtn,
+      nowPlaying: nowPlayingBtn,
       record: recordBtn,
       stoprecord: stoprecordBtn,
       bin: binBtn,
@@ -55,12 +57,16 @@ export class Track {
     countId++;
   }
 
-  async play() {
+  async play(button, nowPlaying) {
+    nowPlaying.classList.remove('invisible');
+    button.classList.add('invisible');
     for (let i = 0; i < this.trackTime.length; i++) {
       await delay(this.trackTime[i]);
       const key = this.trackKeys[i];
       onKeyPress(key);
     }
+    button.classList.remove('invisible');
+    nowPlaying.classList.add('invisible');
   }
 
   record(button, stopButton) {
@@ -123,6 +129,6 @@ const addTrackEvents = (track, btns) => {
     track.stopRecord(btns.record, btns.stoprecord);
   });
   btns.play.addEventListener('click', () => {
-    track.play();
+    track.play(btns.play, btns.nowPlaying);
   });
 };

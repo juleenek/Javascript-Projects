@@ -12,13 +12,18 @@ audio {
 }
 
 .play-button,
-.play-all-button {
+.play-all-button,
+.now-playing {
   width: 0;
   height: 0;
   transform: rotate(90deg);
   border-left: 9px solid transparent;
   border-right: 9px solid transparent;
   border-bottom: 13px solid #000000;
+}
+
+.now-playing{
+  border-bottom: 13px solid #899aa6;
 }
 
 .pause-button {
@@ -32,7 +37,8 @@ audio {
   border-right: 5px solid;
 }
 
-.record-button, .stoprecord-button {
+.record-button,
+.stoprecord-button {
   box-sizing: border-box;
   position: relative;
   display: block;
