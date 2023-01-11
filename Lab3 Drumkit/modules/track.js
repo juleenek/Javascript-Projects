@@ -35,7 +35,6 @@ export class Track {
     );
 
     const binBtn = actionContainer.querySelector('.bin-btn');
-    const loopBtn = actionContainer.querySelector('.loop-btn');
     const playBtn = trackButtonsContainer.querySelector('.play-button');
     const recordBtn = trackButtonsContainer.querySelector('.record-button');
     const stoprecordBtn =
@@ -48,7 +47,6 @@ export class Track {
       record: recordBtn,
       stoprecord: stoprecordBtn,
       bin: binBtn,
-      loop: loopBtn,
     };
 
     addTrackEvents(this, btns);
