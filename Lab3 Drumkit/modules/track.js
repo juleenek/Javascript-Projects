@@ -1,4 +1,5 @@
 import { onKeyPress } from './keys.js';
+import { delay } from './helpers.js';
 
 const trackTemplate = document.querySelector('.track');
 const tracksContainer = document.querySelector('.tracks-container');
@@ -12,6 +13,7 @@ export class Track {
     this.isRecording = false;
     this.trackTime = [];
     this.trackKeys = [];
+    this.timeoutPlay = null;
     this.timer1 = null;
     this.timer2 = null;
     this.elementDOM = trackTemplate.cloneNode(true);
@@ -35,14 +37,12 @@ export class Track {
     const binBtn = actionContainer.querySelector('.bin-btn');
     const loopBtn = actionContainer.querySelector('.loop-btn');
     const playBtn = trackButtonsContainer.querySelector('.play-button');
-    const pauseBtn = trackButtonsContainer.querySelector('.pause-button');
     const recordBtn = trackButtonsContainer.querySelector('.record-button');
     const stoprecordBtn =
       trackButtonsContainer.querySelector('.stoprecord-button');
 
     const btns = {
       play: playBtn,
-      pause: pauseBtn,
       record: recordBtn,
       stoprecord: stoprecordBtn,
       bin: binBtn,
@@ -55,8 +55,13 @@ export class Track {
     countId++;
   }
 
-  play() {}
-  pause() {}
+  async play() {
+    for (let i = 0; i < this.trackTime.length; i++) {
+      await delay(this.trackTime[i]);
+      const key = this.trackKeys[i];
+      onKeyPress(key);
+    }
+  }
 
   record(button, stopButton) {
     button.classList.add('invisible');
@@ -116,5 +121,8 @@ const addTrackEvents = (track, btns) => {
   });
   btns.stoprecord.addEventListener('click', () => {
     track.stopRecord(btns.record, btns.stoprecord);
+  });
+  btns.play.addEventListener('click', () => {
+    track.play();
   });
 };

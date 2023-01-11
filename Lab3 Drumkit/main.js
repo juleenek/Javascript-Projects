@@ -1,7 +1,6 @@
 'use strict';
 
 import { Track } from './modules/track.js';
-import { onKeyPress } from './modules/keys.js';
 
 export let tracks = [];
 export const tracksContainer = document.querySelector('.tracks-container');
