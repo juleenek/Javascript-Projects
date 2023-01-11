@@ -23,7 +23,9 @@ The slider scrolls automatically but can also be stopped.
 <br />
 ## 🥁&nbsp;&nbsp;&nbsp;Lab 3. Drumkit 
 
-(description and link soon)
+Drumkit allows you to record audio tracks. The individual sounds that can be recorded are connected to the keyboard. Sounds that can be recorded are attached to the keyboard. Tracks are added and removed dynamically.
+<br />
+[See live](https://juleenek.github.io/Drumkit/)
 <br />
 <br />
 ## 🗒&nbsp;&nbsp;&nbsp;Lab 4. Note Pocket 
