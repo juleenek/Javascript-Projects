@@ -36,14 +36,16 @@ Project includes a page through which you can add and manage added notes. Notes 
 <br />
 ## 🎮&nbsp;&nbsp;&nbsp;Lab 6. Ball in the Hole
 
-(description and link soon)
+Ball in the Hole is the simple game where you hit the ball into the hole. To move the ball, you have to change the orientation of the device. [You can read about simulating different device orientations for Google Chrome here](https://developer.chrome.com/docs/devtools/sensors/#orientation). <br /><br /> To pass  level, you must not only hit the hole, but also score points that are marked in blue. Red points are negative and reset all blue points you earned, so you have to start the game from the beginning. <br /><br />There are three difficulty levels: easy, medium and hard. They differ in the amount of negative points and good points that you need to earn. The levels also differ in the sensitivity of the ball that moves around the board.
+[See live](https://juleenek.github.io/Ball-in-the-hole/)
 <br />
 <br />
 ## ☄️&nbsp;&nbsp;&nbsp;Lab 6. Canvas 
-
-(description and link soon)
+The project uses a canvas to animate moving dots. When the dots are at a certain distance from each other, a connection is created between them. Dots bounce off the edge of the screen. Move the mouse to push the dots away. <br /><br />
+All parameters can be set in the bottom panel. You can set the number of dots in the canvas, their speed of movement on the screen and the distance between the dots.
+[See live](https://juleenek.github.io/Canvas-dots/)
 <br />
 <br />
 ## 🌦&nbsp;&nbsp;&nbsp;Lab 6. Weather App (Pogodynka)
-
+The weather app searches for the current weather of the cities you entered. Data is fetched from openweathermap API. The search engine includes autocomplete as you enter the location. <br /><br /> Data is saved in localStorage. You can add and remove cities.
 (description and link soon)
