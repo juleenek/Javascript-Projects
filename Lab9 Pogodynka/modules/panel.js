@@ -3,6 +3,7 @@ const panelTemplate = document.querySelector('.panel');
 const autocompleteBox = document.querySelector('.autocomplete-options');
 
 import { searchWeather } from '../main.js';
+import { getChart } from './chart.js';
 
 export const createPanel = (weather) => {
   const panel = panelTemplate.cloneNode(true);
@@ -18,6 +19,10 @@ export const createPanel = (weather) => {
   deleteIcon.addEventListener('click', () => {
     localStorage.removeItem(weather.id);
     panel.remove();
+  });
+
+  panel.addEventListener('click', () => {
+    getChart(weather);
   });
 
   weatherContent.querySelector(

@@ -14,11 +14,12 @@ export class Weather {
     this.humidity = data.main.humidity;
     this.wind = Math.round(data.wind.speed);
     this.icon = data.weather[0].icon;
+    this.forecastList = [];
   }
 
-  save() {
+  save(isNew = true) {
     localStorage.setItem(this.id, JSON.stringify(this));
-    idCount++;
+    if (isNew) idCount++;
   }
 }
 
