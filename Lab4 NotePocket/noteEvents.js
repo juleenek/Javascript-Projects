@@ -57,6 +57,7 @@ const tagEvent = (tagDiv) => {
     notesArray.push(JSON.parse(note));
   }
   for (const note of notesArray.sort((a, b) => b.id - a.id)) {
+    if (note.tags == undefined) return;
     for (const tag of note.tags) {
       if (tag === tagDiv.textContent) {
         invisibleEditIcons();

@@ -42,6 +42,7 @@ export const clearNotes = () => {
 export const createNoteDOM = (note) => {
   const today = new Date(note.date);
   const noteDOM = noteTemplate.cloneNode(true);
+  noteDOM.classList.remove('invisible');
 
   const noteTopDOM = noteDOM.querySelector('.note-top');
   const noteBottomDOM = noteDOM.querySelector('.note-bottom');
@@ -110,6 +111,7 @@ const updateNote = (note) => {
 };
 
 const addTagsToNote = (note, tagsBoxDOM) => {
+  if (note.tags == undefined) return;
   for (const tag of note.tags) {
     if (tag !== '') {
       const tagDiv = document.createElement('div');
