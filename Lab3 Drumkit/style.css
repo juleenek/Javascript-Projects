@@ -134,3 +134,25 @@ input[type='submit'] {
   align-items: center;
   font-size: 17px;
 }
+
+.instruction {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 40px 0;
+  border: solid 3px #eb773e;
+  margin-right: 50px;
+  width: 150px;
+  transition: border 250ms ease-in-out;
+}
+
+.instruction:hover {
+  border: solid 3px #1966b0;
+}
+.instruction p {
+  transition: color 200ms ease-in-out;
+}
+
+.instruction p:hover {
+  color: #eb773e;
+}

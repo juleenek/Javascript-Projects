@@ -1,4 +1,4 @@
-const STOP_RECORDING_KEY = '2';
+const instruction = document.querySelector('.instruction');
 
 const sounds = {
   w: 'boom',
@@ -21,4 +21,12 @@ export const playSound = async (sound) => {
   const audioTag = document.querySelector(`#${sound}`);
   const audio = new Audio(audioTag.src);
   audio.play();
+};
+
+export const getSoundsInstruction = () => {
+  for (const [key, value] of Object.entries(sounds)) {
+    const soundText = document.createElement('p');
+    soundText.textContent = `${key}: ${value}`;
+    instruction.appendChild(soundText);
+  }
 };

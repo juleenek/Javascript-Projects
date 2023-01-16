@@ -2,6 +2,7 @@
 
 import { Track } from './modules/track.js';
 import { playAllTracks } from './modules/track.js';
+import { getSoundsInstruction } from './modules/keys.js';
 
 export let tracks = [];
 export const tracksContainer = document.querySelector('.tracks-container');
@@ -17,3 +18,4 @@ const createTrack = () => {
 
 addTrackBtn.addEventListener('click', createTrack);
 playAllTracksBtn.addEventListener('click', playAllTracks);
+getSoundsInstruction();
