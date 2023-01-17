@@ -8,3 +8,13 @@ body {
   display: none !important;
 }
 
+canvas {
+  width: 90vw !important;
+}
+
+.chart-box {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  padding-bottom: 80px;
+}
