@@ -21,7 +21,6 @@ export const createChart = (weather) => {
       if (minutes < 10) minutes = '0' + minutes;
       times.push(`${hours}:${minutes}`);
       temps.push(object.temp);
-      console.log(object.temp);
     }
     counterData++;
   }
@@ -32,6 +31,8 @@ export const createChart = (weather) => {
       labels: times,
       datasets: [
         {
+          backgroundColor: '#f8aa45',
+          borderColor: '#f0ca99',
           label: 'Temperature',
           data: temps,
           borderWidth: 1,
@@ -39,6 +40,21 @@ export const createChart = (weather) => {
       ],
     },
     options: {
+      scales: {
+        y: {
+          grace: '2',
+          ticks: {
+            callback: function (value) {
+              return value + '°C';
+            },
+          },
+        },
+      },
+      scale: {
+        ticks: {
+          precision: 0,
+        },
+      },
       responsive: true,
       elements: {
         point: {
@@ -47,8 +63,10 @@ export const createChart = (weather) => {
           hoverRadius: 8,
         },
       },
+      plugins: {
+        legend: false,
+      },
     },
-    
   });
 };
 

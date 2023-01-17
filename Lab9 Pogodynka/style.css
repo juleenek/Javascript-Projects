@@ -8,11 +8,11 @@ body {
   display: none !important;
 }
 
-canvas {
-  width: 90vw !important;
+.chart-box {
+  width: 60vw !important;
 }
 
-.chart-box {
+.chart-container {
   width: 100%;
   display: flex;
   justify-content: center;
