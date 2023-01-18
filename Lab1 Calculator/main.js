@@ -100,7 +100,6 @@ function addValuesToArray() {
 
     if (parseInt(value)) {
       inputValuesArray.push(value);
-    } else {
     }
   }
 }
