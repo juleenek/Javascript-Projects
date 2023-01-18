@@ -116,10 +116,7 @@ input[type='reset'] {
 }
 
 .pressed_button div {
-  background-color: #00000052;
-  border: 1px solid #00000062;
-  height: 25px;
-  width: 6px;
+  background-color: #4444447e;
 }
 
 .slider .next_slide,
