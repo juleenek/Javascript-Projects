@@ -5,7 +5,7 @@ let showNotesPage = showNotes.All;
 const noteForm = document.querySelector('.main-note');
 const searchInput = document.querySelector('.search-input');
 const editIcons = document.querySelectorAll('.edit-icon');
-let notesArray = [];
+let notesArraySearch = [];
 
 const getDoneNotesEvent = () => {
   invisibleEditIcons();
@@ -23,32 +23,27 @@ const getAllNotesEvent = () => {
 
 const searchInputEvent = () => {
   if (searchInput.value.length >= 3) {
-    notesArray = [];
+    notesArraySearch = [];
     clearNotes();
 
     for (let i = 0; i < localStorage.length; i++) {
       const note = localStorage.getItem(localStorage.key(i));
-      notesArray.push(JSON.parse(note));
+      notesArraySearch.push(JSON.parse(note));
     }
-    for (const note of notesArray.sort((a, b) => b.id - a.id)) {
-      if (note.title.includes(searchInput.value)) {
+    for (const note of notesArraySearch) {
+      if (
+        note.title.includes(searchInput.value) ||
+        note.content.includes(searchInput.value) ||
+        note.tags.join('').includes(searchInput.value)
+      ) {
         invisibleEditIcons();
         createNoteDOM(note);
         noteForm.classList.add('invisible');
-      } else if (note.content.includes(searchInput.value)) {
-        invisibleEditIcons();
-        createNoteDOM(note);
-        noteForm.classList.add('invisible');
-      } else if (note.tags.join('').includes(searchInput.value)) {
-        invisibleEditIcons();
-        createNoteDOM(note);
-        noteForm.classList.add('invisible');
-      } else {
-        getAllNotesEvent();
       }
     }
   } else {
     getAllNotesEvent();
+    console.log('omg');
   }
 };
 
