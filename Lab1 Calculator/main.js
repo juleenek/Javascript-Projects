@@ -92,8 +92,6 @@ deleteButton.addEventListener('click', function () {
   });
 });
 
-// Results
-
 function addValuesToArray() {
   for (let index = 0; index < inputArray.length; index++) {
     const parentValue = inputArray[index];
@@ -113,8 +111,7 @@ function getResults() {
   for (let index = 0; index < inputValuesArray.length; index++) {
     sumValue += parseInt(inputValuesArray[index]);
   }
-  // Jeśli input to string to nie licz sumy!
-  // Dodać klase podświetlającą gdzie jest źle
+
   let averageValue = sumValue / inputValuesArray.length || 0;
 
   let minValue = Math.min(...inputValuesArray);
