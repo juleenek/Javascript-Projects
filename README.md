@@ -51,7 +51,7 @@ All parameters can be set in the bottom panel. You can set the number of dots in
 <br />
 <br />
 ## 🌦&nbsp;&nbsp;&nbsp;Lab 6. Weather App (Pogodynka)
-The weather app searches for the current weather of the cities you entered. Data is fetched from openweathermap API. The search engine includes autocomplete as you enter the location. <br /><br /> Data is saved in localStorage. You can add and remove cities.
+The weather app searches for the current weather of the cities you entered. Data is fetched from openweathermap API. The search engine includes autocomplete as you enter the location. <br /><br /> By clicking on a weather location, a 24-hour weather chart for the location you clicked on will be displayed at the bottom. The chart was made using the chart.js library. <br /><br /> Data is saved in localStorage. You can add and remove cities.
 <br />
 <br />
 [See live](https://juleenek.github.io/Weather-app/)
